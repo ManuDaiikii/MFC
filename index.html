@@ -433,6 +433,123 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold)!im
 .card[onclick]{cursor:pointer}
 .card[onclick]:hover{border-color:rgba(224,185,62,.5)!important}
 @media(max-width:480px){.hub-t{font-size:1.4rem}.hub-ico{font-size:3.4rem}.auth-brand .fc-logo-text{font-size:3.2rem}}
+
+/* ═══ Menú v5: layout "hub" (barra superior + escenario + dock) ═══ */
+.hb{--gap:14px;min-height:100vh;max-width:1500px;margin:0 auto;padding:16px 22px 20px;display:flex;flex-direction:column;gap:var(--gap)}
+.hb-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 14px;border-radius:16px;background:rgba(8,14,11,.78);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(10px)}
+.hb-top .fc-logo-text{font-size:2.2rem;cursor:pointer}
+.hb-sp{flex:1}
+.hb-chip{display:flex;align-items:baseline;gap:6px;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);font-family:var(--display);font-size:1.25rem;font-weight:700;line-height:1}
+.hb-chip small{font-family:inherit;font-size:.8rem;color:var(--text-3);font-weight:600}
+.hb-me{display:flex;align-items:center;gap:10px;padding:4px 14px 4px 4px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
+.hb-me .fc-avatar{width:34px;height:34px;font-size:1.15rem}
+.hb-me b{font-size:.9rem;max-width:130px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hb-ib{height:40px;padding:0 14px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:#fff;font-family:var(--display);font-size:1.05rem;letter-spacing:.05em;cursor:pointer;transition:background .2s,border-color .2s}
+.hb-ib:hover{border-color:var(--gold);background:rgba(224,185,62,.12)}
+.hb-ib.gold{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#1a1200;border:none;font-weight:800}
+.hb-strip{display:flex;gap:12px;align-items:stretch;flex-wrap:wrap}.hb-strip>*{flex:1;min-width:240px;margin:0!important}
+.hb-stage{display:flex;gap:var(--gap);flex:1;min-height:440px}
+.hb-panel{--ac:#4ade80;--accent:var(--ac);position:relative;flex:1;min-width:0;border-radius:22px;overflow:hidden;cursor:pointer;outline:none;border:1px solid rgba(255,255,255,.1);border:1px solid color-mix(in srgb,var(--ac) 40%,transparent);background:#0b120e;background:linear-gradient(165deg,color-mix(in srgb,var(--ac) 28%,#0b120e),#070b09 72%);transition:flex .5s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
+.hb-panel.focus{flex:2.5;box-shadow:0 20px 60px rgba(0,0,0,.5),0 0 0 1px var(--ac)}
+.hb-panel:focus-visible{box-shadow:0 0 0 3px #fff}
+.hb-wm{position:absolute;right:-10px;top:-6px;font-size:9rem;line-height:1;opacity:.12;transition:opacity .4s,transform .5s;pointer-events:none}
+.hb-panel.focus .hb-wm{opacity:.05;transform:scale(1.2)}
+.hb-art{position:absolute;left:16px;right:16px;top:16px;bottom:210px;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transform:translateY(14px);transition:opacity .4s .1s,transform .5s .1s;pointer-events:none}
+.hb-panel.focus .hb-art{opacity:1;transform:none}
+.hb-body{position:absolute;inset:auto 0 0 0;padding:24px 26px;display:flex;flex-direction:column;gap:8px}
+.hb-title{font-family:var(--display);font-weight:800;font-style:italic;text-transform:uppercase;font-size:clamp(1.9rem,2.6vw,2.9rem);line-height:.95;color:#fff}
+.hb-title::after{content:'';display:block;width:56px;height:5px;margin-top:10px;background:var(--ac);transform:skewX(-20deg);transition:width .4s}
+.hb-panel.focus .hb-title::after{width:96px}
+.hb-more{max-height:0;opacity:0;overflow:hidden;transition:max-height .5s,opacity .35s}
+.hb-panel.focus .hb-more{max-height:260px;opacity:1}
+.hb-more .fc-desc{margin:6px 0 16px;font-size:1rem}.hb-more .fc-actions{margin:0}
+.hb-art .fc-fan{padding:0}.hb-art .fc-fan .ut-card.ut-hero{width:140px;height:198px;font-size:14px;margin-left:-26px;pointer-events:auto}
+.hb-art .fc-fan .ut-card.ut-hero:first-child{margin-left:0}
+.hb-art .fc-ring{width:180px;height:180px}.hb-art .fc-ring-in{width:146px;height:146px}.hb-art .fc-ring-in b{font-size:4rem}
+.hb-art .fc-teams{max-width:380px;gap:8px}.hb-art .fc-team{padding:8px 12px}.hb-art .fc-team b{font-size:1.7rem}
+.hb-dock{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:10px}
+.hb-tile{--ac:#4ade80;position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px 12px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:#fff;cursor:pointer;font-family:var(--display);font-size:1.02rem;letter-spacing:.05em;text-align:center;line-height:1.1;transition:transform .2s,border-color .2s,background .2s,box-shadow .2s}
+.hb-tile .ic{font-size:1.8rem;line-height:1}
+.hb-tile:hover,.hb-tile:focus-visible{transform:translateY(-3px);border-color:var(--ac);background:rgba(255,255,255,.07);box-shadow:0 10px 24px rgba(0,0,0,.35);outline:none}
+.hb-badge{position:absolute;top:9px;right:11px;width:9px;height:9px;border-radius:50%;background:var(--ac);box-shadow:0 0 8px var(--ac)}
+@media(max-width:900px){
+  .hb{padding:12px 12px 24px}
+  .hb-stage{flex-direction:column;min-height:0}
+  .hb-panel,.hb-panel.focus{flex:none}
+  .hb-panel{min-height:96px;transition:min-height .45s ease}
+  .hb-panel.focus{min-height:400px}
+  .hb-art{bottom:190px}
+  .hb-me b{max-width:80px}
+  .hb-dock{grid-template-columns:repeat(auto-fill,minmax(92px,1fr))}
+}
+@media(prefers-reduced-motion:reduce){.hb-panel,.hb-art,.hb-more{transition:none}}
+
+#app:has(.hb){max-width:none!important;width:100%!important;padding:0!important}
+.hb-panel:not(.focus) .hb-title{font-size:clamp(1.4rem,1.9vw,2.1rem);overflow-wrap:anywhere}
+.hb-panel:not(.focus) .hb-wm{font-size:7rem}
+.hb{width:100%;box-sizing:border-box}
+
+.ch-row{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);margin-bottom:10px}
+.ch-row.cur{border-color:var(--ac);background:rgba(255,255,255,.07);box-shadow:0 0 0 1px var(--ac)}
+.ch-row.lock{opacity:.45}
+.ch-n{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:1.3rem;background:#16241b;border:2px solid #4b6b57;flex-shrink:0}
+.ch-row.done .ch-n{background:var(--ac);color:#07130c;border-color:var(--ac)}
+.ch-dots{display:flex;gap:5px;justify-content:center;margin-top:6px}.ch-dots i{width:22px;height:6px;border-radius:3px;background:rgba(255,255,255,.12)}.ch-dots i.on{background:var(--ac)}
+.al-top{display:flex;align-items:center;gap:10px;justify-content:center;min-height:40px;font-size:1.8rem}
+
+/* ═══ v1.0: evento, animación de sobres, cinemática ═══ */
+.ut-card.evento{--c1:#2dd4bf;--c2:#073b4c;--ink:#fff;--glow:rgba(45,212,191,.5);--edge:linear-gradient(160deg,#ecfeff,#2dd4bf 55%,#a7f3d0);text-shadow:0 1px 2px rgba(0,0,0,.45)}
+.hb-event{display:flex;align-items:center;gap:16px;width:100%;padding:12px 20px;border-radius:18px;border:1px solid rgba(45,212,191,.5);background:linear-gradient(100deg,rgba(45,212,191,.3),rgba(8,14,11,.92) 72%);color:#fff;cursor:pointer;text-align:left;font:inherit;transition:transform .2s,box-shadow .2s;overflow:hidden}
+.hb-event:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.4),0 0 0 1px #2dd4bf}
+.hb-event .t{font-family:var(--display);font-size:1.9rem;font-weight:800;font-style:italic;text-transform:uppercase;line-height:1}
+.hb-event .s{font-size:.85rem;color:var(--text-2);margin-top:4px}
+.hb-event .cs{display:flex;margin-left:auto;padding-right:10px}.hb-event .cs .ut-card{margin-left:-18px}
+.hb-ver{text-align:center;color:var(--text-3);font-size:.75rem;padding-top:2px}
+.evt-cards{display:flex;gap:16px;overflow-x:auto;padding:10px 6px 14px}.evt-cards>div{flex:0 0 auto;text-align:center}
+.evt-cards .off{opacity:.38;filter:grayscale(.6)}
+.rip-root{position:fixed;inset:0;z-index:100000;background:#02060a;overflow:hidden;color:#fff}
+.rip-bg{position:absolute;inset:0;background:radial-gradient(70% 60% at 50% 50%,rgba(224,185,62,.2),transparent 70%),#02060a}
+.rip-stage{position:absolute;inset:0;display:grid;place-items:center}
+.rip-float{animation:ripFloat 3s ease-in-out infinite}
+@keyframes ripFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.rip-pack{position:relative;width:min(58vw,240px);aspect-ratio:230/320;cursor:grab;touch-action:none;filter:drop-shadow(0 24px 30px rgba(0,0,0,.6));transition:transform .2s}
+.rip-body{position:absolute;inset:0;background:linear-gradient(160deg,var(--a),var(--b));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--ink);font-family:var(--display);font-weight:800;padding-top:14%}
+.rip-body span{font-size:4rem;line-height:1}.rip-body b{font-size:2rem;letter-spacing:.08em;text-transform:uppercase}.rip-body i{font-style:normal;font-size:1.3rem;letter-spacing:.2em}
+.rip-strip{position:absolute;left:0;top:0;width:100%;height:21%;display:flex}
+.rip-seg{flex:1;display:block;background:linear-gradient(160deg,var(--a),var(--b));background-size:1400% 476%;clip-path:polygon(0 14%,50% 0,100% 14%,100% 100%,50% 82%,0 100%);transform-origin:50% 100%;transition:transform .12s,opacity .12s}
+.rip-seg.up{transform:translateY(-18px) rotate(var(--r))}
+.rip-strip.off .rip-seg{transition:transform .9s cubic-bezier(.5,0,1,.6),opacity .9s;transform:translate(var(--x),-110vh) rotate(var(--r2));opacity:0}
+.rip-glow{position:absolute;left:50%;top:calc(50% - min(29vw,120px) + 6%);width:min(70vw,360px);height:min(70vw,360px);margin:-50% 0 0 0;translate:-50% 0;border-radius:50%;background:radial-gradient(circle,rgba(255,240,170,.95),rgba(255,200,60,.4) 40%,transparent 70%);opacity:0;pointer-events:none;mix-blend-mode:screen}
+.rip-stage.burst .rip-glow{animation:ripFlash 1s ease-out forwards}
+@keyframes ripFlash{0%{opacity:1;scale:1}100%{opacity:0;scale:4}}
+.rip-stage.burst .rip-body{animation:ripDrop .8s ease-in forwards}
+@keyframes ripDrop{to{transform:translateY(60vh) rotate(8deg) scale(.8);opacity:0}}
+.rip-hint{position:absolute;bottom:12%;display:flex;gap:6px;align-items:center;color:#e0b93e;font-family:var(--display);letter-spacing:.12em;font-size:1.1rem;animation:ripHint 1.4s ease-in-out infinite}
+@keyframes ripHint{0%,100%{transform:translateX(-10px);opacity:.5}50%{transform:translateX(10px);opacity:1}}
+.rip-skip{position:absolute;right:18px;bottom:18px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.4);color:#e0b93e;cursor:pointer}
+.rip-sum{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;padding:20px;overflow:auto}
+.rip-sum h2{font-size:2.2rem;margin:0;font-style:italic}
+.rip-grid{display:flex;flex-wrap:wrap;gap:18px;justify-content:center}
+.rip-c{opacity:0;transform:translateY(30px) scale(.8);animation:ripPop .55s var(--d) cubic-bezier(.2,.9,.3,1.3) forwards}
+@keyframes ripPop{to{opacity:1;transform:none}}
+.wo{position:absolute;inset:0;background:#000;display:grid;place-items:center;text-align:center;overflow:hidden;cursor:pointer;z-index:5}
+.wo::before{content:'';position:absolute;inset:-60%;background:repeating-conic-gradient(from 0deg,rgba(255,215,90,.16) 0 4deg,transparent 4deg 24deg);animation:woSpin 16s linear infinite;-webkit-mask:radial-gradient(circle,#000 0,transparent 55%);mask:radial-gradient(circle,#000 0,transparent 55%)}
+@keyframes woSpin{to{transform:rotate(360deg)}}
+.wo-flash{position:absolute;inset:0;background:#fff;animation:woFlash .5s ease-out forwards;pointer-events:none;z-index:2}
+@keyframes woFlash{to{opacity:0}}
+.wo-slide{position:relative;display:flex;flex-direction:column;align-items:center;gap:3vmin;animation:woIn .6s cubic-bezier(.2,.9,.3,1.2) both}
+@keyframes woIn{from{opacity:0;transform:scale(.6) translateY(40px)}to{opacity:1;transform:none}}
+.wo-big{font-family:var(--display);font-weight:800;font-style:italic;font-size:clamp(2.2rem,8vmin,5.5rem);letter-spacing:.04em;text-transform:uppercase;text-shadow:0 0 30px rgba(224,185,62,.6)}
+.wo-flag .flag{width:min(64vw,440px);height:auto;aspect-ratio:3/2;border-radius:10px;box-shadow:0 0 0 3px rgba(255,255,255,.2),0 30px 60px rgba(0,0,0,.6)}
+.wo-pos{font-family:var(--display);font-weight:800;font-style:italic;font-size:clamp(7rem,32vmin,17rem);line-height:.9;color:var(--gold);text-shadow:0 0 60px rgba(224,185,62,.7)}
+.wo-slide>.crest{width:min(40vw,190px);height:auto;filter:drop-shadow(0 0 30px rgba(224,185,62,.5))}
+.wo-card{perspective:900px;animation:woCard 1.1s cubic-bezier(.2,.9,.3,1.1) both}
+.wo-card .ut-card{transition:transform .15s;box-shadow:none;filter:drop-shadow(0 0 40px rgba(255,215,90,.55)) drop-shadow(0 20px 30px rgba(0,0,0,.7))}
+@keyframes woCard{from{opacity:0;transform:translateY(60vh) scale(.4) rotateX(40deg)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.rip-float,.wo::before,.rip-hint{animation:none}}
+.rip-root,.rip-root *{user-select:none;-webkit-user-select:none}
+.uc-nat .flag{width:1.5em;height:1em}.uc-crest{margin-top:.25em}.uc-crest .crest{width:1.3em;height:1.55em}.uc-name{top:65%}.uc-club{top:78.5%}
+.pk-in b{font-size:1.05rem;letter-spacing:.04em}.pk-card .btn{font-size:1rem;letter-spacing:.03em;white-space:normal;line-height:1.15;padding:10px 8px}.rip-body b{font-size:1.6rem;letter-spacing:.05em}
 </style>
 </head>
 <body>
@@ -772,89 +889,55 @@ const DB_UT=[
   {id:'gk_1',name:'Dibu Martínez',rating:86,pos:'GK',type:'gold',nation:'Argentina',league:'Premier League',club:'Aston Villa'},
   {id:'gk_2',name:'Courtois',rating:88,pos:'GK',type:'gold',nation:'Bélgica',league:'La Liga',club:'Real Madrid'},
   {id:'gk_3',name:'Alisson',rating:88,pos:'GK',type:'gold',nation:'Brasil',league:'Premier League',club:'Liverpool'},
-  {id:'gk_4',name:'Neuer',rating:87,pos:'GK',type:'icon',nation:'Icon',league:'Icon',club:'Icon'},
-  {id:'gk_5',name:'Donnarumma',rating:87,pos:'GK',type:'gold',nation:'Italia',league:'Ligue 1',club:'PSG'},
-  {id:'gk_6',name:'Ter Stegen',rating:86,pos:'GK',type:'gold',nation:'Alemania',league:'La Liga',club:'Barcelona'},
-  {id:'gk_7',name:'Ederson',rating:87,pos:'GK',type:'gold',nation:'Brasil',league:'Premier League',club:'Man City'},
+  {id:'gk_5',name:'Donnarumma',rating:87,pos:'GK',type:'gold',nation:'Italia',league:'Premier League',club:'Man City'},
+  {id:'gk_6',name:'Ter Stegen',rating:86,pos:'GK',type:'gold',nation:'Alemania',league:'La Liga',club:'Girona'},
+  {id:'gk_7',name:'Ederson',rating:87,pos:'GK',type:'gold',nation:'Brasil',league:'Süper Lig',club:'Fenerbahçe'},
   {id:'gk_8',name:'Oblak',rating:87,pos:'GK',type:'gold',nation:'Eslovenia',league:'La Liga',club:'Atlético Madrid'},
   {id:'gk_9',name:'Maignan',rating:86,pos:'GK',type:'gold',nation:'Francia',league:'Serie A',club:'AC Milan'},
-  {id:'gk_10',name:'Buffon',rating:89,pos:'GK',type:'icon',nation:'Icon',league:'Icon',club:'Icon'},
-  {id:'gk_11',name:'Casillas',rating:89,pos:'GK',type:'icon',nation:'Icon',league:'Icon',club:'Icon'},
-  {id:'gk_12',name:'Chiquito Romero',rating:78,pos:'GK',type:'silver',nation:'Argentina',league:'Serie A',club:'Boca'},
-  {id:'lb_1',name:'Theo Hernández',rating:85,pos:'LB',type:'gold',nation:'Francia',league:'Serie A',club:'AC Milan'},
+  {id:'gk_12',name:'Chiquito Romero',rating:78,pos:'GK',type:'silver',nation:'Argentina',league:'Liga Profesional',club:'Boca'},
+  {id:'lb_1',name:'Theo Hernández',rating:85,pos:'LB',type:'gold',nation:'Francia',league:'Saudi Pro League',club:'Al-Hilal'},
   {id:'lb_2',name:'Alphonso Davies',rating:86,pos:'LB',type:'gold',nation:'Canadá',league:'Bundesliga',club:'Bayern Múnich'},
-  {id:'lb_3',name:'Cancelo',rating:85,pos:'LB/RB',type:'gold',nation:'Portugal',league:'La Liga',club:'Barcelona'},
+  {id:'lb_3',name:'Cancelo',rating:85,pos:'LB/RB',type:'gold',nation:'Portugal',league:'La Liga',club:'Real Madrid'},
   {id:'lb_5',name:'Robertson',rating:86,pos:'LB',type:'gold',nation:'Escocia',league:'Premier League',club:'Liverpool'},
-  {id:'lb_7',name:'Roberto Carlos',rating:90,pos:'LB',type:'icon',nation:'Icon',league:'Icon',club:'Icon'},
-  {id:'lb_8',name:'Marcelo',rating:88,pos:'LB',type:'icon',nation:'Icon',league:'Icon',club:'Icon'},
   {id:'lb_10',name:'Tagliafico',rating:80,pos:'LB',type:'silver',nation:'Argentina',league:'Ligue 1',club:'Lyon'},
   {id:'rb_1',name:'Hakimi',rating:85,pos:'RB',type:'gold',nation:'Marruecos',league:'Ligue 1',club:'PSG'},
-  {id:'rb_2',name:'Trent Alexander-Arnold',rating:87,pos:'RB',type:'gold',nation:'Inglaterra',league:'Premier League',club:'Liverpool'},
-  {id:'rb_3',name:'Walker',rating:85,pos:'RB',type:'gold',nation:'Inglaterra',league:'Premier League',club:'Man City'},
-  {id:'rb_6',name:'Carvajal',rating:85,pos:'RB',type:'gold',nation:'España',league:'La Liga',club:'Real Madrid'},
-  {id:'rb_7',name:'Cafu',rating:90,pos:'RB',type:'icon',nation:'Icon',league:'Icon',club:'Icon'},
-  {id:'rb_8',name:'Dani Alves',rating:89,pos:'RB',type:'icon',nation:'Icon',league:'Icon',club:'Icon'},
+  {id:'rb_2',name:'Trent Alexander-Arnold',rating:87,pos:'RB',type:'gold',nation:'Inglaterra',league:'La Liga',club:'Real Madrid'},
+  {id:'rb_3',name:'Walker',rating:85,pos:'RB',type:'gold',nation:'Inglaterra',league:'Championship',club:'Burnley'},
+  {id:'rb_6',name:'Carvajal',rating:85,pos:'RB',type:'gold',nation:'España',league:'La Liga',club:'Getafe'},
   {id:'rb_9',name:'Molina',rating:80,pos:'RB',type:'silver',nation:'Argentina',league:'La Liga',club:'Atlético Madrid'},
-  {id:'cb_1',name:'Van Dijk',rating:89,pos:'CB',type:'tots',nation:'Países Bajos',league:'Premier League',club:'Liverpool'},
   {id:'cb_2',name:'Rudiger',rating:86,pos:'CB',type:'gold',nation:'Alemania',league:'La Liga',club:'Real Madrid'},
   {id:'cb_3',name:'Saliba',rating:85,pos:'CB',type:'gold',nation:'Francia',league:'Premier League',club:'Arsenal'},
   {id:'cb_4',name:'Kounde',rating:85,pos:'CB/RB',type:'gold',nation:'Francia',league:'La Liga',club:'Barcelona'},
   {id:'cb_5',name:'Ruben Dias',rating:88,pos:'CB',type:'gold',nation:'Portugal',league:'Premier League',club:'Man City'},
-  {id:'cb_6',name:'Maldini',rating:90,pos:'CB/LB',type:'icon',nation:'Icon',league:'Icon',club:'Icon'},
-  {id:'cb_7',name:'Sergio Ramos',rating:88,pos:'CB',type:'icon',nation:'Icon',league:'Icon',club:'Icon'},
   {id:'cb_11',name:'Marquinhos',rating:85,pos:'CB',type:'gold',nation:'Brasil',league:'Ligue 1',club:'PSG'},
   {id:'cb_14',name:'Romero',rating:84,pos:'CB',type:'gold',nation:'Argentina',league:'Premier League',club:'Tottenham'},
   {id:'cb_15',name:'Otamendi',rating:80,pos:'CB',type:'silver',nation:'Argentina',league:'Primeira Liga',club:'Benfica'},
-  {id:'cdm_1',name:'Rodri',rating:88,pos:'CDM/CM',type:'tots',nation:'España',league:'Premier League',club:'Man City'},
-  {id:'cdm_2',name:'Casemiro',rating:85,pos:'CDM',type:'gold',nation:'Brasil',league:'Premier League',club:'Man United'},
-  {id:'cdm_3',name:'Kanté',rating:87,pos:'CDM/CM',type:'gold',nation:'Francia',league:'Premier League',club:'Chelsea'},
-  {id:'cdm_4',name:'Vieira',rating:90,pos:'CDM/CM',type:'icon',nation:'Icon',league:'Icon',club:'Icon'},
+  {id:'cdm_2',name:'Casemiro',rating:85,pos:'CDM',type:'gold',nation:'Brasil',league:'MLS',club:'Inter Miami'},
+  {id:'cdm_3',name:'Kanté',rating:87,pos:'CDM/CM',type:'gold',nation:'Francia',league:'Süper Lig',club:'Fenerbahçe'},
   {id:'cdm_6',name:'Declan Rice',rating:85,pos:'CDM/CM',type:'gold',nation:'Inglaterra',league:'Premier League',club:'Arsenal'},
-  {id:'cm_1',name:'De Bruyne',rating:90,pos:'CM/CAM',type:'tots',nation:'Bélgica',league:'Premier League',club:'Man City'},
-  {id:'cm_2',name:'Modric',rating:89,pos:'CM/CAM',type:'icon',nation:'Icon',league:'Icon',club:'Icon'},
-  {id:'cm_3',name:'Bellingham',rating:89,pos:'CM/CAM',type:'toty',nation:'Inglaterra',league:'La Liga',club:'Real Madrid'},
   {id:'cm_4',name:'Pedri',rating:86,pos:'CM/CAM',type:'gold',nation:'España',league:'La Liga',club:'Barcelona'},
   {id:'cm_5',name:'Gavi',rating:84,pos:'CM',type:'gold',nation:'España',league:'La Liga',club:'Barcelona'},
   {id:'cm_6',name:'Valverde',rating:87,pos:'CM/RM',type:'gold',nation:'Uruguay',league:'La Liga',club:'Real Madrid'},
   {id:'cm_8',name:'Odegaard',rating:86,pos:'CM/CAM',type:'gold',nation:'Noruega',league:'Premier League',club:'Arsenal'},
   {id:'cm_9',name:'Mac Allister',rating:84,pos:'CM',type:'gold',nation:'Argentina',league:'Premier League',club:'Liverpool'},
-  {id:'cm_12',name:'Zidane',rating:91,pos:'CAM/CM',type:'icon',nation:'Icon',league:'Icon',club:'Icon'},
-  {id:'cm_13',name:'Iniesta',rating:91,pos:'CM/CAM',type:'icon',nation:'Icon',league:'Icon',club:'Icon'},
-  {id:'cm_14',name:'Xavi',rating:90,pos:'CM',type:'icon',nation:'Icon',league:'Icon',club:'Icon'},
-  {id:'cm_16',name:'Enzo Fernandez',rating:82,pos:'CM/CDM',type:'silver',nation:'Argentina',league:'Premier League',club:'Chelsea'},
-  {id:'cam_1',name:'Messi',rating:91,pos:'RW/CAM/CF',type:'toty',nation:'Argentina',league:'MLS',club:'Inter Miami'},
-  {id:'cam_2',name:'Maradona',rating:92,pos:'CAM',type:'icon',nation:'Icon',league:'Icon',club:'Icon'},
-  {id:'cam_3',name:'Pelé',rating:92,pos:'CAM/ST',type:'icon',nation:'Icon',league:'Icon',club:'Icon'},
-  {id:'cam_5',name:'Ronaldinho',rating:91,pos:'CAM/LW',type:'icon',nation:'Icon',league:'Icon',club:'Icon'},
-  {id:'cam_7',name:'Wirtz',rating:85,pos:'CAM',type:'gold',nation:'Alemania',league:'Bundesliga',club:'Bayer Leverkusen'},
+  {id:'cm_16',name:'Enzo Fernandez',rating:82,pos:'CM/CDM',type:'silver',nation:'Argentina',league:'Premier League',club:'Man City'},
+  {id:'cam_7',name:'Wirtz',rating:85,pos:'CAM',type:'gold',nation:'Alemania',league:'Premier League',club:'Liverpool'},
   {id:'cam_8',name:'Musiala',rating:86,pos:'CAM/LW',type:'gold',nation:'Alemania',league:'Bundesliga',club:'Bayern Múnich'},
-  {id:'lw_1',name:'Vinicius Jr',rating:90,pos:'LW/ST',type:'toty',nation:'Brasil',league:'La Liga',club:'Real Madrid'},
-  {id:'lw_2',name:'Neymar',rating:89,pos:'LW/CAM',type:'gold',nation:'Brasil',league:'Saudi Pro League',club:'Al-Hilal'},
+  {id:'lw_2',name:'Neymar',rating:89,pos:'LW/CAM',type:'gold',nation:'Brasil',league:'Brasileirão',club:'Santos'},
   {id:'lw_4',name:'Foden',rating:85,pos:'LW/CAM',type:'gold',nation:'Inglaterra',league:'Premier League',club:'Man City'},
-  {id:'lw_5',name:'Kvaratskhelia',rating:86,pos:'LW',type:'gold',nation:'Georgia',league:'Serie A',club:'Napoli'},
+  {id:'lw_5',name:'Kvaratskhelia',rating:86,pos:'LW',type:'gold',nation:'Georgia',league:'Ligue 1',club:'PSG'},
   {id:'lw_6',name:'Leão',rating:85,pos:'LW',type:'gold',nation:'Portugal',league:'Serie A',club:'AC Milan'},
-  {id:'lw_7',name:'Luis Diaz',rating:85,pos:'LW',type:'gold',nation:'Colombia',league:'Premier League',club:'Liverpool'},
-  {id:'lw_9',name:'Cristiano Ronaldo',rating:90,pos:'ST/LW',type:'icon',nation:'Icon',league:'Icon',club:'Icon'},
+  {id:'lw_7',name:'Luis Diaz',rating:85,pos:'LW',type:'gold',nation:'Colombia',league:'Bundesliga',club:'Bayern Múnich'},
   {id:'lw_10',name:'Nico Williams',rating:84,pos:'LW',type:'gold',nation:'España',league:'La Liga',club:'Athletic Bilbao'},
-  {id:'rw_1',name:'Salah',rating:88,pos:'RW/ST',type:'tots',nation:'Egipto',league:'Premier League',club:'Liverpool'},
   {id:'rw_2',name:'Saka',rating:87,pos:'RW/LW',type:'gold',nation:'Inglaterra',league:'Premier League',club:'Arsenal'},
   {id:'rw_3',name:'Raphinha',rating:84,pos:'RW/LW',type:'gold',nation:'Brasil',league:'La Liga',club:'Barcelona'},
-  {id:'rw_4',name:'Sané',rating:85,pos:'RW',type:'gold',nation:'Alemania',league:'Bundesliga',club:'Bayern Múnich'},
-  {id:'rw_7',name:'Figo',rating:89,pos:'RW',type:'icon',nation:'Icon',league:'Icon',club:'Icon'},
-  {id:'rw_10',name:'Di Maria',rating:86,pos:'RW/LW/CAM',type:'gold',nation:'Argentina',league:'Primeira Liga',club:'Benfica'},
-  {id:'st_1',name:'Mbappé',rating:91,pos:'ST/LW',type:'toty',nation:'Francia',league:'Ligue 1',club:'PSG'},
-  {id:'st_2',name:'Haaland',rating:90,pos:'ST',type:'toty',nation:'Noruega',league:'Premier League',club:'Man City'},
-  {id:'st_3',name:'Kane',rating:89,pos:'ST/CF',type:'tots',nation:'Inglaterra',league:'Bundesliga',club:'Bayern Múnich'},
+  {id:'rw_4',name:'Sané',rating:85,pos:'RW',type:'gold',nation:'Alemania',league:'Süper Lig',club:'Galatasaray'},
+  {id:'rw_10',name:'Di Maria',rating:86,pos:'RW/LW/CAM',type:'gold',nation:'Argentina',league:'Liga Profesional',club:'Rosario Central'},
   {id:'st_4',name:'Lewandowski',rating:88,pos:'ST',type:'gold',nation:'Polonia',league:'La Liga',club:'Barcelona'},
   {id:'st_5',name:'Lautaro',rating:86,pos:'ST',type:'gold',nation:'Argentina',league:'Serie A',club:'Inter'},
-  {id:'st_6',name:'Osimhen',rating:87,pos:'ST',type:'gold',nation:'Nigeria',league:'Serie A',club:'Napoli'},
-  {id:'st_8',name:'Ronaldo Nazario',rating:91,pos:'ST/CF',type:'icon',nation:'Icon',league:'Icon',club:'Icon'},
+  {id:'st_6',name:'Osimhen',rating:87,pos:'ST',type:'gold',nation:'Nigeria',league:'Süper Lig',club:'Galatasaray'},
   {id:'st_10',name:'Suarez',rating:86,pos:'ST',type:'gold',nation:'Uruguay',league:'MLS',club:'Inter Miami'},
-  {id:'st_12',name:'Julian Alvarez',rating:84,pos:'ST/CF',type:'gold',nation:'Argentina',league:'Premier League',club:'Man City'},
-  {id:'gk_totw',name:'Dibu TOTW',rating:92,pos:'GK',type:'totw',nation:'Argentina',league:'Premier League',club:'Aston Villa'},
-  {id:'cm_totw',name:'Bellingham TOTW',rating:94,pos:'CM/CAM',type:'totw',nation:'Inglaterra',league:'La Liga',club:'Real Madrid'},
-  {id:'st_totw',name:'Haaland TOTW',rating:95,pos:'ST',type:'totw',nation:'Noruega',league:'Premier League',club:'Man City'},
-  {id:'cf_1',name:'Aguero',rating:88,pos:'CF/ST',type:'icon',nation:'Icon',league:'Icon',club:'Icon'}
+  {id:'st_12',name:'Julian Alvarez',rating:84,pos:'ST/CF',type:'gold',nation:'Argentina',league:'La Liga',club:'Atlético Madrid'}
 ];
 
 // ═══════════════════════════════════════════════════════════════
@@ -867,10 +950,10 @@ function loadUserData(uid) {
     if (saved) {
       UT = JSON.parse(saved);
     } else {
-      UT = { coins: 5000, cards: [], squad: Array(11).fill(null), bench: Array(7).fill(null), packs: 0, packInv: {silver:0,gold:5,premium:0,elite:0,legend:0}, formation: '4-3-3', champsDiv: 10, champsPts: 0 };
+      UT = { coins: 5000, cards: [], squad: Array(11).fill(null), bench: Array(7).fill(null), packs: 0, packInv: {silver:0,gold:5}, formation: '4-3-3', champsDiv: 10, champsPts: 0 };
     }
   } catch(e) {
-    UT = { coins: 5000, cards: [], squad: Array(11).fill(null), bench: Array(7).fill(null), packs: 0, packInv: {silver:0,gold:5,premium:0,elite:0,legend:0}, formation: '4-3-3', champsDiv: 10, champsPts: 0 };
+    UT = { coins: 5000, cards: [], squad: Array(11).fill(null), bench: Array(7).fill(null), packs: 0, packInv: {silver:0,gold:5}, formation: '4-3-3', champsDiv: 10, champsPts: 0 };
   }
 
   // Cargar Battle Pass
@@ -1021,16 +1104,17 @@ function playPackAnimation(pulled, onComplete) {
 const BP_MAX_LEVEL=60;const BP_XP_PER_LEVEL=100;const BP_XP_PER_CHAMPS_WIN=100;
 
 function getBPReward(level,track){
-  if(level===BP_MAX_LEVEL){if(track==='vip')return{coins:500000,packs:20,specialCard:'icon',specialName:'Carta ICON Épica'};return{coins:50000,packs:5,specialCard:null}}
+  if(level===BP_MAX_LEVEL){if(track==='vip')return{coins:500000,packs:20,season:3,specialCard:null,specialName:null};return{coins:50000,packs:5,specialCard:null}}
   if(track==='free')return{coins:500+level*150,packs:level%5===0?1:0,specialCard:null};
-  const coins=2000+level*500;const packs=2;let sc=null,sn=null;
-  if(level%20===0){sc='icon';sn='Carta ICON'}else if(level%10===0){sc='toty';sn='Carta TOTY'}else if(level%5===0){sc='totw';sn='Carta TOTW'}
-  return{coins,packs,specialCard:sc,specialName:sn};
+  const coins=2000+level*500;let packs=2,season=0;
+  if(level%20===0)season=1;else if(level%10===0)packs=4;else if(level%5===0)packs=3;
+  return{coins,packs,season,specialCard:null,specialName:null};
 }
 function deliverBPReward(r){
   if(!UT) return;
   if(r.coins)UT.coins+=r.coins;
   if(r.packs)addPacks(r.packs);
+  if(r.season)addPacks(r.season,'season');
   if(r.specialCard){const pool=DB_UT.filter(p=>p.type===r.specialCard);if(pool.length>0){const c=randItem(pool);UT.cards.push({...c,id:c.id+'_bp_'+Date.now()+'_'+Math.random().toString(36).slice(2,6)})}}
   saveUT();
 }
@@ -1042,7 +1126,7 @@ window.addBPXP=function(amount){
   if(lg>0)setTimeout(()=>window.showAlert(`¡SUBISTE ${lg} NIVEL${lg>1?'ES':''}!<br><br>Nivel: <strong style="color:var(--gold);font-size:1.3rem">${BP.level}/${BP_MAX_LEVEL}</strong><br>${isBPVIP()?'🎁 FREE + VIP':'🎁 FREE'}<br><br>${!isBPVIP()?'<span class="dim">💡 Comprá el Pase VIP</span>':''}`,'🏆 BATTLE PASS'),800);
 };
 
-function renderBPRewardHTML(r){const p=[];if(r.coins)p.push(`🪙 ${r.coins.toLocaleString()}`);if(r.packs)p.push(`🎁 ${r.packs} Sobre${r.packs>1?'s':''}`);if(r.specialCard)p.push(`⭐ ${r.specialName||r.specialCard.toUpperCase()}`);return p.join('<br>')}
+function renderBPRewardHTML(r){const p=[];if(r.coins)p.push(`🪙 ${r.coins.toLocaleString()}`);if(r.packs)p.push(`🎁 ${r.packs} Sobre${r.packs>1?'s':''}`);if(r.season)p.push(`⭐ ${r.season} Sobre Temporada`);if(r.specialCard)p.push(`⭐ ${r.specialName||r.specialCard.toUpperCase()}`);return p.join('<br>')}
 
 // ═══ PASE v2 ═══
 const BP_END=new Date('2027-01-31T23:59:59');
@@ -1050,8 +1134,8 @@ const bpFmt=n=>n>=1000?(n%1000?(n/1000).toFixed(1):n/1000)+'K':String(n);
 const bpSample=t=>DB_UT.filter(p=>p.type===t).sort((a,b)=>b.rating-a.rating)[0];
 function bpTile(r,state){
   const sp=r.specialCard?bpSample(r.specialCard):null;
-  const vis=sp?`<div class="ut-card ${r.specialCard} ut-mini">${utCardInner(sp)}</div>`:`<div class="bp2-ico">${r.packs>=2?'🎁':'🪙'}</div>`;
-  return `<div class="bp2-tile ${state}">${vis}<div>${r.coins?`🪙 ${bpFmt(r.coins)}`:''}${r.coins&&r.packs?'<br>':''}${r.packs?`🎁 ×${r.packs}`:''}</div></div>`}
+  const vis=sp?`<div class="ut-card ${r.specialCard} ut-mini">${utCardInner(sp)}</div>`:`<div class="bp2-ico">${r.season?'⭐':r.packs>=2?'🎁':'🪙'}</div>`;
+  return `<div class="bp2-tile ${state}">${vis}<div>${r.coins?`🪙 ${bpFmt(r.coins)}`:''}${r.coins&&r.packs?'<br>':''}${r.packs?`🎁 ×${r.packs}`:''}${r.season?`<br>⭐ ×${r.season}`:''}</div></div>`}
 function bpPending(){const vip=isBPVIP();const f=Math.max(0,BP.level-(BP.lastFreeClaimed||0));const v=vip?Math.max(0,BP.level-(BP.lastVIPClaimed||0)):0;return{f,v}}
 function bpCollectAll(){const vip=isBPVIP();let n=0,c=0,pk=0;
   for(let i=(BP.lastFreeClaimed||0)+1;i<=BP.level;i++){const r=getBPReward(i,'free');deliverBPReward(r);n++;c+=r.coins||0;pk+=r.packs||0}BP.lastFreeClaimed=Math.max(BP.lastFreeClaimed||0,BP.level);
@@ -1061,13 +1145,13 @@ function bpDaily(){const k=`bp_daily_${window.onlineUser.uid}`;const d=new Date(
 function bpBuyLevel(){if(BP.level>=BP_MAX_LEVEL)return;if(!UT||UT.coins<10000){window.showAlert('Necesitás 10.000 🪙 para comprar un nivel.');return}UT.coins-=10000;saveUT();window.addBPXP(BP_XP_PER_LEVEL-BP.xp);screenBP()}
 function screenBP(){
   if(!BP)return;const vip=isBPVIP();const lf=BP.lastFreeClaimed||0,lv=BP.lastVIPClaimed||0;const pend=bpPending();const total=pend.f+pend.v;
-  const days=Math.max(0,Math.ceil((BP_END-Date.now())/864e5));const feat=bpSample('icon');
+  const days=Math.max(0,Math.ceil((BP_END-Date.now())/864e5));const feat=null;
   const cols=[];for(let i=1;i<=BP_MAX_LEVEL;i++){
     const fs=i<=lf?'claimed':i<=BP.level?'ready':'locked';
     const vs=!vip?'vlock locked':i<=lv?'claimed':i<=BP.level?'ready':'locked';
     cols.push(`<div class="bp2-col ${i===BP.level?'cur':''} ${i<=BP.level?'reached':''} ${i%10===0?'mile':''}">${bpTile(getBPReward(i,'vip'),'bp2-vip '+vs).replace('class="bp2-tile ','class="bp2-tile bp2-vip ').replace('bp2-vip bp2-vip','bp2-vip')}<div class="bp2-node"><div class="bp2-dia"><b>${i}</b></div></div>${bpTile(getBPReward(i,'free'),'bp2-free '+fs)}</div>`)}
   $('#app').innerHTML=`<div id="app-inner" class="page-transition" style="max-width:1200px"><button class="top-back-btn" onclick="screenInicio()">← Volver</button><div style="height:46px"></div>
-  <div class="bp2"><div class="bp2-side"><div class="bp2-feat">${feat?`<div class="ut-card ${feat.type}">${utCardInner(feat)}</div>`:'<div class="bp2-ico">👑</div>'}<button class="bp2-buy ${vip?'on':''}" ${vip?'disabled':'onclick="screenStore()"'}>${vip?`VIP ACTIVO · ${getBPVIPDays()} d`:'COMPRAR VIP'}</button>${vip?'':'<button class="btn btn-outline btn-sm btn-block" onclick="openRedeem()">🔑 Tengo un código</button>'}</div>
+  <div class="bp2"><div class="bp2-side"><div class="bp2-feat"><div class="pk" style="--a:#5eead4;--b:#0b4a5a;--ink:#fff"><div class="pk-in"><span>⭐</span><b>Temporada</b><i>★★★</i></div></div><button class="bp2-buy ${vip?'on':''}" ${vip?'disabled':'onclick="screenStore()"'}>${vip?`VIP ACTIVO · ${getBPVIPDays()} d`:'COMPRAR VIP'}</button>${vip?'':'<button class="btn btn-outline btn-sm btn-block" onclick="openRedeem()">🔑 Tengo un código</button>'}</div>
   <div class="bp2-info"><div>La temporada termina en <b style="color:#fff">${days} días</b></div><div class="bp2-lvl"><div class="bp2-hex"><b>${BP.level}</b></div><div style="flex:1"><b style="color:#fff">${BP.xp}/${BP_XP_PER_LEVEL} XP</b><div class="progress" style="height:6px;margin-top:5px"><div class="progress-fill" style="width:${BP.xp/BP_XP_PER_LEVEL*100}%"></div></div></div></div><button class="btn btn-outline btn-sm btn-block" onclick="bpDaily()">🎯 XP diaria · +50</button><button class="btn btn-outline btn-sm btn-block" onclick="bpBuyLevel()">⏫ Comprar nivel · 10.000 🪙</button><div class="dim">+${BP_XP_PER_CHAMPS_WIN} XP por victoria en Champions</div></div></div>
   <div class="bp2-main"><div class="bp2-bar"><h2 style="margin:0">🏆 Pase de batalla 2027</h2><div style="display:flex;gap:8px;align-items:center"><span class="pill" style="background:rgba(167,139,250,.2);color:#c4b5fd">👑 VIP arriba</span><span class="pill pill-green">🎁 Gratis abajo</span></div></div>
   <div class="bp2-rail" id="bp2-rail">${cols.join('')}</div>
@@ -1084,8 +1168,7 @@ const STORE_ITEMS=[
   {id:'coins_large',name:'Cofre de Monedas',icon:'💎',coins:100000,price:'$14.99',desc:'100,000 monedas',tag:'MEJOR VALOR'},
   {id:'coins_mega',name:'Bóveda Legendaria',icon:'👑',coins:500000,price:'$49.99',desc:'500,000 monedas'},
   {id:'packs_small',name:'Pack de Sobres',icon:'🎁',packs:5,price:'$2.99',desc:'5 sobres Oro'},
-  {id:'packs_large',name:'Caja de Sobres',icon:'📦',packs:20,price:'$9.99',desc:'5 sobres Premium',tag:'OFERTA'},
-  {id:'super_pack',name:'Sobre Épico',icon:'✨',superPack:true,price:'$4.99',desc:'ICON garantizada',tag:'RARO'},
+  {id:'packs_large',name:'Caja de Sobres',icon:'📦',packs:20,price:'$9.99',desc:'10 sobres Oro',tag:'OFERTA'},
   {id:'bp_vip',name:'Pase de Batalla VIP',icon:'👑',bpVip:true,price:'$6.99',desc:'VIP 30 días + retroactivas',tag:'EXCLUSIVO'},
   {id:'vip_pass',name:'Pase VIP Premium',icon:'🏆',vip:true,price:'$19.99',desc:'+100,000 🪙 + badge',tag:'PREMIUM'}
 ];
@@ -1265,30 +1348,34 @@ function calculateChemistry(squad,formName){
 
 function screenUT(){
   if(!UT) return;
-  $('#app').innerHTML=`<div id="app-inner" class="page-transition"><button class="top-back-btn" onclick="screenInicio()">← Volver</button><div class="card card-gold"><div style="display:flex;justify-content:space-between;align-items:center"><h2 style="margin:0">Ultimate Team</h2><div style="font-size:1.2rem;font-weight:800;color:var(--gold)">🪙 ${UT.coins.toLocaleString()}</div></div></div><div class="card" onclick="screenBP()" style="cursor:pointer;background:linear-gradient(135deg,rgba(224,185,62,.15),rgba(20,32,25,.95));border-color:var(--gold)"><div style="display:flex;align-items:center;gap:16px"><div style="font-size:2.5rem">🏆</div><div style="flex:1"><h3 style="margin:0;color:var(--gold);font-size:1.1rem">Pase de Batalla</h3><p class="dim" style="margin:4px 0 0 0">Nivel ${BP?BP.level:1}/${BP_MAX_LEVEL} · ${BP?BP.xp:0}/${BP_XP_PER_LEVEL} XP</p><div class="progress" style="height:6px;margin-top:6px"><div class="progress-fill" style="width:${BP?(BP.xp/BP_XP_PER_LEVEL)*100:0}%"></div></div></div><div style="font-size:1.5rem">→</div></div></div><div class="hub"><button class="hub-tile wide" style="--ac:#e0b93e" onclick="screenPacks()"><span class="hub-ico">🎁</span><span class="hub-t">Sobres</span><span class="hub-s">${packCount()} guardado${packCount()===1?'':'s'} · desde 2.000 🪙</span></button><button class="hub-tile" style="--ac:#60a5fa" onclick="screenUTSquad()"><span class="hub-ico">⚽</span><span class="hub-t">Mi plantilla</span><span class="hub-s">Arrastrá o tocá</span></button><button class="hub-tile" style="--ac:#a78bfa" onclick="screenUTDraft()"><span class="hub-ico">📝</span><span class="hub-t">Draft</span><span class="hub-s">Armá un equipo nuevo</span></button><button class="hub-tile" style="--ac:#4ade80" onclick="screenUTMarket()"><span class="hub-ico">💱</span><span class="hub-t">Mercado</span><span class="hub-s">Comprá y vendé cartas</span></button><button class="hub-tile" style="--ac:#34d399" onclick="screenUTTournament()"><span class="hub-ico">🤖</span><span class="hub-t">Torneo offline</span><span class="hub-s">Cuartos, semis y final</span></button><button class="hub-tile" style="--ac:#facc15" onclick="screenWheel()"><span class="hub-ico">🎡</span><span class="hub-t">Ruleta</span><span class="hub-s">${wheelReady()?'¡Giro gratis listo!':'Volvé mañana'}</span></button><button class="hub-tile" style="--ac:#f472b6" onclick="screenProClubs()"><span class="hub-ico">🤝</span><span class="hub-t">Clubs Pro</span><span class="hub-s">5v5 online con amigos</span></button><button class="hub-tile wide" style="--ac:#d4af37" onclick="screenUTChampions()"><span class="hub-ico">👑</span><span class="hub-t">FUT Champions</span><span class="hub-s">División ${['I','II','III','IV','V','VI','VII','VIII','IX','X'][UT.champsDiv-1]}</span></button></div></div>`;
+  $('#app').innerHTML=`<div id="app-inner" class="page-transition"><button class="top-back-btn" onclick="screenInicio()">← Volver</button><div class="card card-gold"><div style="display:flex;justify-content:space-between;align-items:center"><h2 style="margin:0">Ultimate Team</h2><div style="font-size:1.2rem;font-weight:800;color:var(--gold)">🪙 ${UT.coins.toLocaleString()}</div></div></div><div class="card" onclick="screenBP()" style="cursor:pointer;background:linear-gradient(135deg,rgba(224,185,62,.15),rgba(20,32,25,.95));border-color:var(--gold)"><div style="display:flex;align-items:center;gap:16px"><div style="font-size:2.5rem">🏆</div><div style="flex:1"><h3 style="margin:0;color:var(--gold);font-size:1.1rem">Pase de Batalla</h3><p class="dim" style="margin:4px 0 0 0">Nivel ${BP?BP.level:1}/${BP_MAX_LEVEL} · ${BP?BP.xp:0}/${BP_XP_PER_LEVEL} XP</p><div class="progress" style="height:6px;margin-top:6px"><div class="progress-fill" style="width:${BP?(BP.xp/BP_XP_PER_LEVEL)*100:0}%"></div></div></div><div style="font-size:1.5rem">→</div></div></div><div class="hub"><button class="hub-tile wide" style="--ac:#2dd4bf" onclick="screenEvent()"><span class="hub-ico">⭐</span><span class="hub-t">Primeros pasos</span><span class="hub-s">Evento · monedas y sobres gratis</span></button><button class="hub-tile wide" style="--ac:#e0b93e" onclick="screenPacks()"><span class="hub-ico">🎁</span><span class="hub-t">Sobres</span><span class="hub-s">${packCount()} guardado${packCount()===1?'':'s'} · desde 2.000 🪙</span></button><button class="hub-tile" style="--ac:#60a5fa" onclick="screenUTSquad()"><span class="hub-ico">⚽</span><span class="hub-t">Mi plantilla</span><span class="hub-s">Arrastrá o tocá</span></button><button class="hub-tile" style="--ac:#a78bfa" onclick="screenUTDraft()"><span class="hub-ico">📝</span><span class="hub-t">Draft</span><span class="hub-s">Armá un equipo nuevo</span></button><button class="hub-tile" style="--ac:#4ade80" onclick="screenUTMarket()"><span class="hub-ico">💱</span><span class="hub-t">Mercado</span><span class="hub-s">Comprá y vendé cartas</span></button><button class="hub-tile" style="--ac:#34d399" onclick="screenUTTournament()"><span class="hub-ico">🤖</span><span class="hub-t">Torneo offline</span><span class="hub-s">Cuartos, semis y final</span></button><button class="hub-tile" style="--ac:#facc15" onclick="screenWheel()"><span class="hub-ico">🎡</span><span class="hub-t">Ruleta</span><span class="hub-s">${wheelReady()?'¡Giro gratis listo!':'Volvé mañana'}</span></button><button class="hub-tile" style="--ac:#f472b6" onclick="screenProClubs()"><span class="hub-ico">🤝</span><span class="hub-t">Clubs Pro</span><span class="hub-s">5v5 online con amigos</span></button><button class="hub-tile" style="--ac:#fb923c" onclick="screenChronicles()"><span class="hub-ico">📖</span><span class="hub-t">Crónicas</span><span class="hub-s">Series con objetivos</span></button><button class="hub-tile" style="--ac:#c084fc" onclick="screenAlbum()"><span class="hub-ico">📚</span><span class="hub-t">Álbum</span><span class="hub-s">Colecciones con premio</span></button><button class="hub-tile wide" style="--ac:#d4af37" onclick="screenUTChampions()"><span class="hub-ico">👑</span><span class="hub-t">FUT Champions</span><span class="hub-s">División ${['I','II','III','IV','V','VI','VII','VIII','IX','X'][UT.champsDiv-1]}</span></button></div></div>`;
 }
 
 // ═══ TIENDA DE SOBRES ═══
 const PACK_TIERS=[
  {id:'silver',name:'Plata',cost:2000,n:3,stars:1,icon:'⚪',a:'#e6ebee',b:'#7f8c93',ink:'#1c2427',w:[['silver',55],['gold',45]],gtxt:'Cartas de plata y oro',g:null},
- {id:'gold',name:'Oro',cost:5000,n:3,stars:2,icon:'🥇',a:'#f7e08a',b:'#b88a1c',ink:'#2d1f00',w:[['gold',94],['tots/toty',5],['icon',1]],gtxt:'Mayoría de oro, con suerte especial',g:null},
- {id:'premium',name:'Premium',cost:15000,n:4,stars:3,icon:'💎',a:'#7ee0ff',b:'#0b4a8f',ink:'#ffffff',w:[['gold',80],['tots/toty',15],['icon',4],['totw',1]],gtxt:'Garantiza 1 carta de 88+',g:p=>p.rating>=88},
- {id:'elite',name:'Élite',cost:50000,n:5,stars:4,icon:'🔥',a:'#ff9a4d',b:'#8f1d0a',ink:'#ffffff',w:[['gold',45],['tots/toty',38],['icon',12],['totw',5]],gtxt:'Garantiza 1 carta especial',g:p=>p.type!=='gold'&&p.type!=='silver'},
- {id:'legend',name:'Leyenda',cost:150000,n:5,stars:5,icon:'👑',a:'#f46bd0',b:'#3d0b57',ink:'#ffffff',w:[['gold',20],['tots/toty',40],['icon',28],['totw',12]],gtxt:'Garantiza 1 Ícono',g:p=>p.type==='icon'}
+ {id:'gold',name:'Oro',cost:5000,n:3,stars:2,icon:'🥇',a:'#f7e08a',b:'#b88a1c',ink:'#2d1f00',w:[['gold',100]],gtxt:'Solo cartas de oro',g:null},
+ {id:'season',name:'Temporada',cost:12000,n:4,stars:3,icon:'⭐',a:'#5eead4',b:'#0b4a5a',ink:'#ffffff',w:[['gold',100]],sp:[['donna',2.5],['yamal',1.5],['dembele',1],['haaland',.5],['mbappe',.3],['kane',.15]],gtxt:'Las estrellas de la temporada',g:null},
 ];
 const PK_NAMES={silver:'Plata',gold:'Oro','tots/toty':'TOTS/TOTY',icon:'Ícono',totw:'TOTW'};
 const pkPool=k=>DB_UT.filter(p=>k==='tots/toty'?(p.type==='tots'||p.type==='toty'):p.type===k);
 function pkRoll(t){
   const tot=t.w.reduce((a,x)=>a+x[1],0);const out=[];
-  for(let i=0;i<t.n;i++){let r=Math.random()*tot,k=t.w[0][0];for(const [kk,w] of t.w){if(r<w){k=kk;break}r-=w}const pool=pkPool(k);out.push({...randItem(pool.length?pool:DB_UT)})}
+  for(let i=0;i<t.n;i++){
+    if(t.sp){let r=Math.random()*100,hit=null;for(const [k,pr] of t.sp){if(r<pr){hit=k;break}r-=pr}if(hit){out.push({...EVT_CARDS[hit]});continue}}
+    let r=Math.random()*tot,k=t.w[0][0];for(const [kk,w] of t.w){if(r<w){k=kk;break}r-=w}const pool=pkPool(k);out.push({...randItem(pool.length?pool:DB_UT)})}
   if(t.g&&!out.some(t.g)){const pool=DB_UT.filter(t.g);if(pool.length)out[out.length-1]={...randItem(pool)}}
   const st=Date.now();return out.sort((a,b)=>a.rating-b.rating).map((c,i)=>({...c,id:c.id+'_'+st+'_'+i}))}
+function pkOdds(t){const sp=(t.sp||[]),spT=sp.reduce((a,x)=>a+x[1],0),tot=t.w.reduce((a,x)=>a+x[1],0);
+  return [...sp.map(([k,p])=>`<span>${EVT_CARDS[k].name.split(' ').pop()} ${EVT_CARDS[k].rating} · ${p}%</span>`),...t.w.map(([k,w])=>`<span>${PK_NAMES[k]} ${Math.round(w/tot*(100-spT)*10)/10}%</span>`)].join('')}
 // ═══ SOBRES CON TIER (inventario) ═══
-function utNorm(){if(!UT)return;if(!UT.packInv)UT.packInv={silver:0,gold:0,premium:0,elite:0,legend:0};if(UT.packs>0){UT.packInv.gold+=UT.packs;UT.packs=0}}
+function utNorm(){if(!UT)return;const I=UT.packInv||(UT.packInv={silver:0,gold:0});if(UT.packs>0){I.gold=(I.gold||0)+UT.packs;UT.packs=0}
+  [['premium',2],['elite',4],['legend',6]].forEach(([k,m])=>{if(I[k])I.gold=(I.gold||0)+I[k]*m;delete I[k]});I.silver=I.silver||0;I.gold=I.gold||0;
+  if(!UT.evt){let st={};try{st=getStats()||{}}catch(e){}UT.evt={claimed:{},opened:0,base:{m:st.totalMatches||0,w:st.totalWins||0,g:st.totalGoals||0}}}}
 function packCount(){utNorm();return UT?Object.values(UT.packInv).reduce((a,b)=>a+b,0):0}
-function addPacks(n,tier){utNorm();n=Number(n)||0;if(!UT||n<=0)return;if(!tier){if(n>=10){tier='premium';n=Math.ceil(n/4)}else tier='gold'}UT.packInv[tier]=(UT.packInv[tier]||0)+n}
-const PK_XP={silver:5,gold:10,premium:20,elite:40,legend:80};
-function pkFinish(t,pulled){UT.cards.push(...pulled);saveUT();if(window.unlockAchievement)window.unlockAchievement('first_pack');playPackAnimation(pulled,()=>{if(window.addBPXP&&BP)window.addBPXP(PK_XP[t.id]);screenPacks()})}
+function addPacks(n,tier){utNorm();n=Number(n)||0;if(!UT||n<=0)return;if(!tier){tier='gold';if(n>=10)n=Math.ceil(n/2)}UT.packInv[tier]=(UT.packInv[tier]||0)+n}
+const PK_XP={silver:5,gold:10,season:25};
+function pkFinish(t,pulled){UT.cards.push(...pulled);utNorm();UT.evt.opened=(UT.evt.opened||0)+1;window._pkTier=t;saveUT();if(window.unlockAchievement)window.unlockAchievement('first_pack');playPackAnimation(pulled,()=>{if(window.addBPXP&&BP)window.addBPXP(PK_XP[t.id]);screenPacks()})}
 function buyTier(id){const t=PACK_TIERS.find(x=>x.id===id);if(!t||!UT)return;
   if(UT.coins<t.cost){window.showAlert(`Te faltan ${(t.cost-UT.coins).toLocaleString()} 🪙 para este sobre.`);return}
   UT.coins-=t.cost;pkFinish(t,pkRoll(t))}
@@ -1304,14 +1391,14 @@ function screenPacks(){
   const card=t=>{const tot=t.w.reduce((a,x)=>a+x[1],0);const can=UT.coins>=t.cost;const own=UT.packInv[t.id]||0;
     return `<div class="card pk-card" style="--a:${t.a};--b:${t.b};--ink:${t.ink}"><div class="pk"><div class="pk-in"><span>${t.icon}</span><b>${t.name}</b><i>${'★'.repeat(t.stars)}</i></div></div>
     <div><h3 style="margin:0">Sobre ${t.name}</h3><div class="pk-meta">${t.n} cartas · ${t.gtxt}<br>+${PK_XP[t.id]} XP del pase</div></div>
-    <div class="pk-odds">${t.w.map(([k,w])=>`<span>${PK_NAMES[k]} ${Math.round(w/tot*1000)/10}%</span>`).join('')}</div>
+    <div class="pk-odds">${pkOdds(t)}</div>
     ${own?`<button class="btn btn-green btn-block" onclick="openTier('${t.id}')">🎁 Abrir (tenés ${own})</button>`:''}
     <button class="btn ${can?'btn-gold':'btn-outline'} btn-block" ${can?'':'disabled'} onclick="buyTier('${t.id}')">${can?`Comprar y abrir · 🪙 ${t.cost.toLocaleString()}`:`Te faltan ${(t.cost-UT.coins).toLocaleString()} 🪙`}</button></div>`};
   $('#app').innerHTML=`<div id="app-inner" class="page-transition"><button class="top-back-btn" onclick="screenUT()">← Volver</button><div class="card card-gold"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><div><h2 style="margin:0">🎁 Tienda de sobres</h2><div class="dim">Cuanto mejor el sobre, mejores cartas y garantías. Tenés ${packCount()} guardado${packCount()===1?'':'s'}.</div></div><div style="font-size:1.3rem;font-weight:800;color:var(--gold)">🪙 ${UT.coins.toLocaleString()}</div></div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><button class="btn btn-outline btn-sm" onclick="recycleDupes()">♻️ Reciclar repetidas</button><button class="btn btn-outline btn-sm" onclick="screenWheel()">🎡 Ruleta diaria</button></div></div>
   <div class="pk-grid">${PACK_TIERS.map(card).join('')}</div></div>`}
 
 // ═══ RULETA DIARIA ═══
-const WHEEL=[{l:'1.000 🪙',w:24,c:1000,col:'#1e3a2a'},{l:'2.500 🪙',w:18,c:2500,col:'#2b5a3d'},{l:'Sobre Plata',w:18,t:'silver',col:'#5b6a72'},{l:'5.000 🪙',w:14,c:5000,col:'#2b5a3d'},{l:'Sobre Oro',w:12,t:'gold',col:'#8a6a12'},{l:'+50 XP pase',w:8,x:50,col:'#3d2a7a'},{l:'Sobre Premium',w:4,t:'premium',col:'#0b4a8f'},{l:'25.000 🪙',w:2,c:25000,col:'#9b1c3a'}];
+const WHEEL=[{l:'1.000 🪙',w:24,c:1000,col:'#1e3a2a'},{l:'2.500 🪙',w:18,c:2500,col:'#2b5a3d'},{l:'Sobre Plata',w:18,t:'silver',col:'#5b6a72'},{l:'5.000 🪙',w:14,c:5000,col:'#2b5a3d'},{l:'Sobre Oro',w:12,t:'gold',col:'#8a6a12'},{l:'+50 XP pase',w:8,x:50,col:'#3d2a7a'},{l:'2 Sobres Oro',w:4,t:'gold',n:2,col:'#0b4a8f'},{l:'25.000 🪙',w:2,c:25000,col:'#9b1c3a'}];
 const wheelKey=()=>`mfc_wheel_${window.onlineUser.uid}`;
 const wheelReady=()=>localStorage.getItem(wheelKey())!==new Date().toDateString();
 function screenWheel(){if(!UT)return;const ready=wheelReady();
@@ -1322,8 +1409,122 @@ function wheelSpin(paid){if(paid&&UT.coins<3000){window.showAlert('Necesitás 3.
   const btn=document.getElementById('wh-btn');btn.disabled=true;if(paid){UT.coins-=3000}else localStorage.setItem(wheelKey(),new Date().toDateString());
   const tot=WHEEL.reduce((a,p)=>a+p.w,0);let r=Math.random()*tot,idx=0;for(let i=0;i<WHEEL.length;i++){if(r<WHEEL[i].w){idx=i;break}r-=WHEEL[i].w}
   const d=document.getElementById('wh-disc');d.style.transition='transform 4.2s cubic-bezier(.12,.7,.1,1)';d.style.transform=`rotate(${360*6+360-(idx*45+22.5)}deg)`;
-  setTimeout(()=>{const p=WHEEL[idx];if(p.c)UT.coins+=p.c;if(p.t)addPacks(1,p.t);saveUT();if(p.x&&window.addBPXP&&BP)window.addBPXP(p.x);
+  setTimeout(()=>{const p=WHEEL[idx];if(p.c)UT.coins+=p.c;if(p.t)addPacks(p.n||1,p.t);saveUT();if(p.x&&window.addBPXP&&BP)window.addBPXP(p.x);
     window.showAlert(`¡Ganaste <b class="gold">${p.l}</b>!`,'🎡 RULETA');screenWheel()},4400)}
+
+// ═══ CRÓNICAS (series de partidos F2P) ═══
+const CHRONICLES=[
+ {id:'potrero',icon:'🏘️',name:'El Potrero',color:'#4ade80',desc:'Del baldío del barrio a la gran final.',pack:'silver',coins:2500,m:[['Amistoso de barrio',60,'win'],['Copa del Pasaje',63,'goals2'],['Clásico de la cuadra',66,'clean'],['Semifinal zonal',69,'win'],['La gran final',72,'margin2']]},
+ {id:'rivalidad',icon:'🔥',name:'Rivalidad eterna',color:'#f87171',desc:'Un clásico que se juega todo el año.',pack:'gold',coins:3500,m:[['Ida de pretemporada',68,'win'],['Fecha caliente',71,'goals2'],['Derbi bajo la lluvia',74,'clean'],['Revancha',77,'win'],['Clásico definitivo',80,'margin2']]},
+ {id:'copa',icon:'🏆',name:'Camino a la copa',color:'#60a5fa',desc:'Eliminatorias directas: un error y te vas.',pack:'gold',coins:5000,m:[['Octavos de final',72,'win'],['Cuartos de final',75,'goals2'],['Semifinal',78,'clean'],['Final de ida',80,'win'],['Gran final',83,'margin2']]}
+];
+const CH_OBJ={win:['Ganá el partido',(a,b)=>a>b],goals2:['Ganá marcando 2 goles o más',(a,b)=>a>b&&a>=2],clean:['Ganá sin recibir goles',(a,b)=>a>b&&b===0],margin2:['Ganá por 2 goles de diferencia',(a,b)=>a-b>=2]};
+const CH_RIVALS=['Los Pibes','Barrio Norte','Deportivo Sur','Atlético Callejero','Unión del Pasaje','Real Potrero','Furia FC','Estrellas del Oeste'];
+const chDone=id=>(UT.chron&&UT.chron[id])||0;
+function screenChronicles(){if(!UT)return;
+  $('#app').innerHTML=`<div id="app-inner" class="page-transition"><button class="top-back-btn" onclick="screenUT()">← Volver</button><div class="card card-gold center"><h2>📖 Crónicas</h2><p class="muted">Series de 5 partidos con objetivos. Gratis para todos: si no tenés plantilla completa, te prestamos un equipo.</p></div>
+  <div class="pk-grid">${CHRONICLES.map(c=>{const d=chDone(c.id);return `<div class="card pk-card" style="--ac:${c.color}"><div style="font-size:3rem">${c.icon}</div><h3 style="margin:0;color:${c.color}">${c.name}</h3><div class="pk-meta">${c.desc}</div><div class="ch-dots">${c.m.map((_,i)=>`<i class="${i<d?'on':''}"></i>`).join('')}</div><div class="dim">${d>=c.m.length?'Completada ✓':`${d}/${c.m.length} partidos`}</div><button class="btn btn-outline btn-block" onclick="screenChronicle('${c.id}')">${d>=c.m.length?'Ver':d?'Continuar':'Empezar'}</button></div>`}).join('')}</div></div>`}
+function screenChronicle(id){const c=CHRONICLES.find(x=>x.id===id),d=chDone(id),pk=PACK_TIERS.find(t=>t.id===c.pack).name;
+  $('#app').innerHTML=`<div id="app-inner" class="page-transition" style="--ac:${c.color}"><button class="top-back-btn" onclick="screenChronicles()">← Crónicas</button><div class="card card-gold"><div style="display:flex;align-items:center;gap:14px"><div style="font-size:2.6rem">${c.icon}</div><div><h2 style="margin:0">${c.name}</h2><div class="dim">${c.desc}</div></div></div><div class="ch-dots" style="justify-content:flex-start">${c.m.map((_,i)=>`<i class="${i<d?'on':''}"></i>`).join('')}</div><p class="dim mt">🏁 Al completarla: +${c.coins.toLocaleString()} 🪙 y 1 sobre ${pk}</p></div>
+  ${c.m.map((m,i)=>{const st=i<d?'done':i===d?'cur':'lock';return `<div class="ch-row ${st}"><div class="ch-n">${i<d?'✓':i+1}</div><div style="flex:1;min-width:0"><b>${m[0]}</b><div class="dim">Rival ${m[1]} GRL · ${CH_OBJ[m[2]][0]}</div><div class="dim">Premio: ${(500+i*150).toLocaleString()} 🪙 · +10 XP</div></div>${st==='cur'?`<button class="btn btn-green btn-sm" onclick="chPlay('${id}',${i})">⚽ Jugar</button>`:''}</div>`}).join('')}</div>`}
+function chPlay(id,i){const c=CHRONICLES.find(x=>x.id===id),m=c.m[i],d=chDone(id);if(i!==d)return;
+  const full=UT.squad.filter(Boolean).length>=11;const my=full?[...UT.squad,...UT.bench.filter(p=>p)]:genBotTeam(70);const rival=CH_RIVALS[(i+id.length)%CH_RIVALS.length];
+  window.startMatchSimulation('Mi UT',rival,my,genBotTeam(m[1]),(a,b,mm)=>{const ok=CH_OBJ[m[2]][1](a,b);let ex='';
+    if(ok){const co=500+i*150;if(!UT.chron)UT.chron={};UT.chron[id]=d+1;UT.coins+=co;ex=`<p class="gold">✅ Objetivo cumplido · +${co.toLocaleString()} 🪙 · +10 XP</p>`;
+      if(d+1>=c.m.length){UT.coins+=c.coins;addPacks(1,c.pack);ex+=`<p class="gold">🏁 ¡Crónica completada! +${c.coins.toLocaleString()} 🪙 y 1 sobre ${PACK_TIERS.find(t=>t.id===c.pack).name}</p>`}
+      saveUT();if(window.addBPXP&&BP)window.addBPXP(10)}
+    else ex=`<p class="red">❌ Objetivo no cumplido: ${CH_OBJ[m[2]][0]}. ¡Probá de nuevo!</p>`;
+    window.renderMatchResult(ok?'¡OBJETIVO CUMPLIDO!':'Casi...','Mi UT',rival,a,b,ex+(full?'':'<p class="dim">Equipo prestado (armá tu plantilla para usar tus cartas)</p>'),()=>screenChronicle(id),mm)})}
+
+// ═══ ÁLBUM DE COLECCIONES ═══
+function albumSets(){utNorm();const cnt=f=>{const q=new Set();UT.cards.forEach(c=>{if(f(c))q.add(c.name)});return q.size};const sets=[];
+  const nat={},cl={};DB_UT.forEach(p=>{if(p.type!=='icon'){(nat[p.nation]=nat[p.nation]||new Set()).add(p.name)}if(p.club!=='Icon'){(cl[p.club]=cl[p.club]||new Set()).add(p.name)}});
+  Object.entries(nat).filter(([n,q])=>q.size>=4).forEach(([n,q])=>sets.push({id:'n_'+n,name:n,vis:flagSVG(n).replace('class="flag"','class="flag" style="width:46px;height:30px"'),need:3,have:cnt(c=>c.nation===n&&c.type!=='icon'),coins:1500}));
+  Object.entries(cl).filter(([n,q])=>q.size>=3).forEach(([n,q])=>sets.push({id:'c_'+n,name:n,vis:crestSVG(n,34),need:3,have:cnt(c=>c.club===n),coins:1000,pack:'silver'}));
+  sets.push({id:'estrellas',name:'Estrellas de la temporada',vis:'⭐',need:3,have:cnt(c=>c.type==='evento'),coins:3000,pack:'gold'});return sets}
+function albumClaim(id){const st=albumSets().find(x=>x.id===id);if(!st||st.have<st.need)return;if(!UT.album)UT.album={};if(UT.album[id])return;UT.album[id]=1;UT.coins+=st.coins;if(st.pack)addPacks(1,st.pack);saveUT();screenAlbum()}
+function screenAlbum(){if(!UT)return;const sets=albumSets(),al=UT.album||{};const done=sets.filter(x=>al[x.id]).length;
+  $('#app').innerHTML=`<div id="app-inner" class="page-transition"><button class="top-back-btn" onclick="screenUT()">← Volver</button><div class="card card-gold center"><h2>📚 Álbum</h2><p class="muted">Juntá jugadores distintos de cada país y club para cobrar premios. ${done}/${sets.length} completados.</p></div>
+  <div class="pk-grid">${sets.map(x=>{const ok=x.have>=x.need,got=al[x.id];return `<div class="card pk-card" style="margin:0"><div class="al-top">${x.vis}</div><h3 style="margin:0">${utEsc(x.name)}</h3><div class="progress" style="width:100%"><div class="progress-fill" style="width:${Math.min(100,x.have/x.need*100)}%"></div></div><div class="dim">${Math.min(x.have,x.need)}/${x.need} jugadores distintos</div><div class="pk-meta">${x.coins.toLocaleString()} 🪙${x.pack?` + sobre ${PACK_TIERS.find(t=>t.id===x.pack).name}`:''}</div><button class="btn ${got?'btn-outline':ok?'btn-gold':'btn-outline'} btn-block btn-sm" ${got||!ok?'disabled':''} onclick="albumClaim('${x.id}')">${got?'Cobrado ✓':ok?'Cobrar':'Incompleto'}</button></div>`}).join('')}</div></div>`}
+
+// ═══ EVENTO: PRIMEROS PASOS ═══
+const EVT_CARDS={
+ kane:{id:'evt_kane',name:'Harry Kane',rating:91,pos:'ST',type:'evento',nation:'Inglaterra',league:'Bundesliga',club:'Bayern Múnich',tag:'BALÓN DE ORO'},
+ mbappe:{id:'evt_mbappe',name:'Mbappé',rating:90,pos:'ST',type:'evento',nation:'Francia',league:'La Liga',club:'Real Madrid',tag:'PICHICHI'},
+ haaland:{id:'evt_haaland',name:'Haaland',rating:90,pos:'ST',type:'evento',nation:'Noruega',league:'Premier League',club:'Man City',tag:'BOTA DE ORO'},
+ dembele:{id:'evt_dembele',name:'Dembélé',rating:89,pos:'RW',type:'evento',nation:'Francia',league:'Ligue 1',club:'PSG',tag:'MVP CHAMPIONS'},
+ yamal:{id:'evt_yamal',name:'Lamine Yamal',rating:89,pos:'RW',type:'evento',nation:'España',league:'La Liga',club:'Barcelona',tag:'PREMIO KOPA'},
+ donna:{id:'evt_donna',name:'Donnarumma',rating:88,pos:'GK',type:'evento',nation:'Italia',league:'Premier League',club:'Man City',tag:'GUANTE DE ORO'}};
+const EVT_TASKS=[
+ {k:'played',n:1,t:'Jugá 1 partido',r:{coins:1000}},
+ {k:'wins',n:1,t:'Ganá 1 partido',r:{packs:{silver:1}}},
+ {k:'opened',n:1,t:'Abrí 1 sobre',r:{packs:{gold:1}}},
+ {k:'played',n:5,t:'Jugá 5 partidos',r:{coins:2000}},
+ {k:'wins',n:3,t:'Ganá 3 partidos',r:{coins:1000,packs:{gold:1}}},
+ {k:'goals',n:10,t:'Marcá 10 goles',r:{packs:{silver:2}}},
+ {k:'opened',n:5,t:'Abrí 5 sobres',r:{packs:{gold:2}}},
+ {k:'wins',n:8,t:'Ganá 8 partidos',r:{coins:3000,packs:{gold:1}}},
+ {k:'played',n:15,t:'Jugá 15 partidos',r:{coins:2000,packs:{gold:2}}},
+ {k:'wins',n:12,t:'Ganá 12 partidos',r:{coins:4000,packs:{gold:2}}},
+ {k:'all',n:10,t:'Completá los 10 pasos anteriores',r:{coins:5000,packs:{season:1}}}];
+function evtProg(t){utNorm();const E=UT.evt;let st={};try{st=getStats()||{}}catch(e){}
+  return t.k==='played'?(st.totalMatches||0)-E.base.m:t.k==='wins'?(st.totalWins||0)-E.base.w:t.k==='goals'?(st.totalGoals||0)-E.base.g:t.k==='opened'?E.opened:Object.keys(E.claimed).filter(i=>i<10).length}
+const evtReady=()=>{utNorm();return EVT_TASKS.filter((t,i)=>!UT.evt.claimed[i]&&evtProg(t)>=t.n).length};
+function evtRew(r){const pk=Object.entries(r.packs||{}).map(([id,n])=>`🎁 ${n} sobre${n>1?'s':''} ${PACK_TIERS.find(t=>t.id===id).name}`);return [r.coins?`🪙 ${r.coins.toLocaleString()}`:'',...pk].filter(Boolean).join(' · ')}
+function evtAnnounce(){const uid=window.onlineUser&&window.onlineUser.uid;if(!uid)return;const k=`mfc_evt2_seen_${uid}`;if(localStorage.getItem(k))return;
+  const root=document.getElementById('modal-root');if(!root)return;if(root.innerHTML.trim()){setTimeout(evtAnnounce,1500);return}
+  root.innerHTML=`<div class="modal-overlay"><div class="modal-content center" style="max-width:480px;border:1px solid #2dd4bf"><div class="dim" style="color:#2dd4bf;font-weight:800;letter-spacing:.15em">NOVEDADES</div><h2 style="margin:6px 0 4px;font-style:italic">⭐ Sobre Temporada</h2><p class="muted">Nuevo sobre con las estrellas del año: Kane, Mbappé, Haaland, Dembélé, Yamal y Donnarumma. Cada carta tiene entre 2,5% y 0,15% de salir; el resto son oros.</p><div style="display:flex;justify-content:center;margin:16px 0 18px;padding-right:18px">${['kane','mbappe','haaland'].map(c=>`<div class="ut-card evento ut-lg" style="margin-right:-18px">${utCardInner(EVT_CARDS[c])}</div>`).join('')}</div><p class="muted" style="font-size:.9rem">Y el evento <b>Primeros pasos</b> regala monedas y sobres por jugar.</p><button class="btn btn-gold btn-block mt" id="evt-pack">Ver el sobre</button><button class="btn btn-outline btn-sm btn-block mt" id="evt-go">Ver el evento</button><button class="btn btn-outline btn-sm btn-block mt" id="evt-later">Más tarde</button></div></div>`;
+  const close=()=>{localStorage.setItem(k,'1');root.innerHTML=''};document.getElementById('evt-pack').onclick=()=>{close();screenPacks()};document.getElementById('evt-go').onclick=()=>{close();screenEvent()};document.getElementById('evt-later').onclick=close}
+function evtBanner(){let n=0,d=0;if(UT){utNorm();n=evtReady();d=Object.keys(UT.evt.claimed).length}
+  return `<button class="hb-event" onclick="screenEvent()"><div><div class="t">Primeros pasos</div><div class="s">${d}/${EVT_TASKS.length} pasos · ${n?`<b style="color:#2dd4bf">${n} premio${n>1?'s':''} para cobrar</b>`:'Monedas y sobres gratis por jugar'}</div></div><div class="cs" style="gap:10px;font-size:2.2rem;padding-right:6px"><span>🪙</span><span>🎁</span><span>⭐</span></div></button>`}
+function evtClaim(i){const t=EVT_TASKS[i];utNorm();if(UT.evt.claimed[i]||evtProg(t)<t.n)return;UT.evt.claimed[i]=1;const r=t.r;
+  if(r.coins)UT.coins+=r.coins;Object.entries(r.packs||{}).forEach(([id,n])=>addPacks(n,id));saveUT();
+  window.showAlert(`¡Paso completado!<br><b class="gold">${evtRew(r)}</b>`,'⭐ PRIMEROS PASOS');screenEvent()}
+function screenEvent(){if(!UT)return;utNorm();const E=UT.evt,done=Object.keys(E.claimed).length,st=PACK_TIERS.find(x=>x.id==='season');
+  $('#app').innerHTML=`<div id="app-inner" class="page-transition" style="--ac:#2dd4bf"><button class="top-back-btn" onclick="screenInicio()">← Menú</button><div class="card card-gold" style="border-color:#2dd4bf"><h2 style="margin:0">⭐ Primeros pasos</h2><p class="muted">Jugá, ganá y abrí sobres para juntar monedas y sobres. El último paso te da un <b>Sobre Temporada</b>.</p><div class="progress mt"><div class="progress-fill" style="width:${done/EVT_TASKS.length*100}%"></div></div><div class="dim mt">${done}/${EVT_TASKS.length} pasos completados</div></div>
+  <div class="card" style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><div style="font-size:2.6rem">⭐</div><div style="flex:1;min-width:200px"><h3 style="margin:0">Sobre Temporada</h3><div class="dim">4 cartas · Kane, Mbappé, Haaland, Dembélé, Yamal y Donnarumma entre 2,5% y 0,15%. Tenés ${UT.packInv.season||0}.</div></div><button class="btn btn-outline btn-sm" onclick="screenPacks()">Ir a sobres</button></div>
+  ${EVT_TASKS.map((t,i)=>{const p=Math.min(evtProg(t),t.n),cl=E.claimed[i],ok=p>=t.n;return `<div class="ch-row ${cl?'done':ok?'cur':''}"><div class="ch-n">${cl?'✓':i+1}</div><div style="flex:1;min-width:0"><b>${t.t}</b><div class="progress" style="height:6px;margin:6px 0"><div class="progress-fill" style="width:${p/t.n*100}%"></div></div><div class="dim">${p}/${t.n} · ${evtRew(t.r)}</div></div>${cl?'':ok?`<button class="btn btn-gold btn-sm" onclick="evtClaim(${i})">Cobrar</button>`:''}</div>`}).join('')}</div>`}
+
+// ═══ ANIMACIÓN DE SOBRES v2 (rasgado + cinemática 90+) ═══
+const pkAC=()=>window._pkAC||(window._pkAC=new (window.AudioContext||window.webkitAudioContext)());
+function pkTone(f0,f1,d,v,ty='sine'){try{const A=pkAC(),t=A.currentTime,o=A.createOscillator(),g=A.createGain();o.type=ty;o.frequency.setValueAtTime(f0,t);o.frequency.exponentialRampToValueAtTime(Math.max(20,f1),t+d);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(g);g.connect(A.destination);o.start(t);o.stop(t+d+.05)}catch(e){}}
+function pkNoise(d,f0,f1,v){try{const A=pkAC(),t=A.currentTime,n=A.createBuffer(1,Math.max(1,Math.floor(A.sampleRate*d)),A.sampleRate),c=n.getChannelData(0);for(let i=0;i<c.length;i++)c[i]=Math.random()*2-1;const s=A.createBufferSource();s.buffer=n;const f=A.createBiquadFilter();f.type='bandpass';f.frequency.setValueAtTime(f0,t);f.frequency.exponentialRampToValueAtTime(f1,t+d);const g=A.createGain();g.gain.setValueAtTime(v,t);g.gain.linearRampToValueAtTime(0,t+d);s.connect(f);f.connect(g);g.connect(A.destination);s.start()}catch(e){}}
+const POS_NAMES={GK:'Portero',CB:'Defensa central',LB:'Lateral izquierdo',RB:'Lateral derecho',CDM:'Pivote',CM:'Mediocampista',CAM:'Mediapunta',LW:'Extremo izquierdo',RW:'Extremo derecho',ST:'Delantero'};
+function pkWalkout(p,host,done){
+  const wo=document.createElement('div');wo.className='wo';host.appendChild(wo);const pos=String(p.pos).split('/')[0];
+  const ph=[
+    ()=>`<div class="wo-slide"><div class="wo-flag">${flagSVG(p.nation)}</div><div class="wo-big">${utEsc(p.nation==='Icon'?'Leyenda':p.nation)}</div></div>`,
+    ()=>`<div class="wo-slide"><div class="wo-pos">${utEsc(pos)}</div><div class="wo-big">${POS_NAMES[pos]||''}</div></div>`,
+    ()=>`<div class="wo-slide">${crestSVG(p.club,170)}<div class="wo-big">${utEsc(p.club==='Icon'?'Ícono':p.club)}</div></div>`,
+    ()=>{const w=Math.min(innerWidth*.62,300);return `<div class="wo-slide"><div class="wo-card" style="width:${w}px;height:${Math.round(w*164/116)}px"><div class="ut-card ${p.type} ut-xl" style="font-size:${w/10}px">${utCardInner(p)}</div></div><div class="wo-big">${utEsc(p.name)}</div><div class="dim">Tocá para continuar</div></div>`}];
+  let i=-1,fin=false,timer,tFin=0;
+  const end=()=>{wo.remove();done()};
+  const next=()=>{clearTimeout(timer);i++;wo.innerHTML='<div class="wo-flash"></div>'+ph[i]();pkTone(150+i*80,40,.5,.5);pkNoise(.5,300+i*300,3000,.35);
+    if(i===3){fin=true;tFin=performance.now();pkTone(660,1320,.9,.22,'triangle');pkNoise(1,400,6000,.4)}else timer=setTimeout(next,1500)};
+  wo.addEventListener('click',()=>{if(!fin){clearTimeout(timer);i=2;next()}else if(performance.now()-tFin>700)end()});
+  wo.addEventListener('pointermove',e=>{const c=wo.querySelector('.ut-card');if(c&&fin){const r=wo.getBoundingClientRect();c.style.transform=`rotateY(${(e.clientX-r.width/2)/r.width*24}deg) rotateX(${-(e.clientY-r.height/2)/r.height*18}deg)`}});
+  next()}
+function playPackAnimation(pulled,onComplete){
+  const t=window._pkTier||PACK_TIERS[PACK_TIERS.length-1];window._pkTier=null;const list=[...pulled].sort((a,b)=>a.rating-b.rating);
+  const root=document.createElement('div');root.className='rip-root';document.body.appendChild(root);const N=14;
+  const segs=Array.from({length:N},(_,i)=>`<u class="rip-seg" style="background-position:${i/(N-1)*100}% 0;--r:${(-8-Math.random()*22).toFixed(1)}deg;--x:${Math.round((Math.random()-.5)*260)}px;--r2:${Math.round((Math.random()-.5)*900)}deg"></u>`).join('');
+  const pw=100/N,top=['0% 21%'];for(let i=0;i<N;i++)top.push(`${(i*pw).toFixed(2)}% 21%`,`${((i+.5)*pw).toFixed(2)}% 17.2%`);top.push('100% 21%');const bot=[];for(let i=0;i<=16;i++)bot.push(`${(100-i*100/16).toFixed(2)}% ${i%2?'97.5%':'100%'}`);
+  root.innerHTML=`<div class="rip-bg"></div><div class="rip-stage" style="--a:${t.a};--b:${t.b};--ink:${t.ink}"><div class="rip-glow"></div><div class="rip-float"><div class="rip-pack"><div class="rip-body" style="clip-path:polygon(${top.join(',')},${bot.join(',')})"><span>${t.icon}</span><b>${t.name}</b><i>${'★'.repeat(t.stars)}</i></div><div class="rip-strip">${segs}</div></div></div><div class="rip-hint">›››&nbsp;Deslizá para rasgar&nbsp;›››</div></div><button class="rip-skip" aria-label="Saltar">⏭</button>`;
+  const pack=root.querySelector('.rip-pack'),stage=root.querySelector('.rip-stage'),glow=root.querySelector('.rip-glow'),su=[...root.querySelectorAll('.rip-seg')],strip=root.querySelector('.rip-strip');
+  let prog=0,drag=false,sx=0,moved=0,torn=false,raf=0;
+  const set=p=>{prog=Math.max(0,Math.min(1,p));su.forEach((u,i)=>u.classList.toggle('up',prog*(N+1)>i+.6));glow.style.opacity=(prog*.95).toFixed(2);pack.style.transform=`rotate(${(prog*-3).toFixed(2)}deg) scale(${(1+prog*.04).toFixed(3)})`};
+  const cleanup=()=>{document.removeEventListener('keydown',key);root.remove();if(onComplete)onComplete()};
+  function summary(){torn=true;root.innerHTML=`<div class="rip-bg"></div><div class="rip-sum"><h2>Contenido del sobre</h2><div class="rip-grid">${list.map((p,i)=>`<div class="rip-c" style="--d:${(i*.16).toFixed(2)}s"><div class="ut-card ${p.type} ut-lg">${utCardInner(p)}</div></div>`).join('')}</div><button class="btn btn-gold" id="rip-ok">Continuar</button></div>`;
+    list.forEach((p,i)=>setTimeout(()=>pkTone(500+i*90,900+i*90,.25,.18,'triangle'),i*160));root.querySelector('#rip-ok').onclick=cleanup}
+  const afterTear=()=>{const hits=list.filter(p=>p.rating>=90);const run=k=>{if(k>=hits.length){summary();return}pkWalkout(hits[k],root,()=>run(k+1))};run(0)};
+  const finish=()=>{if(torn)return;torn=true;set(1);strip.classList.add('off');pkNoise(.5,2000,8000,.5);pkTone(220,60,.5,.5,'sawtooth');setTimeout(()=>{stage.classList.add('burst');pkTone(880,1760,.8,.28,'triangle')},350);setTimeout(afterTear,1300)};
+  const auto=()=>{if(torn||raf)return;const p0=prog,t0=performance.now();pkNoise(.7,500,6000,.4);const step=n=>{const k=Math.min(1,(n-t0)/650);set(p0+(1-p0)*k);if(k<1)raf=requestAnimationFrame(step);else{raf=0;finish()}};raf=requestAnimationFrame(step)};
+  pack.addEventListener('pointerdown',e=>{if(torn)return;drag=true;moved=0;sx=e.clientX;try{pack.setPointerCapture(e.pointerId)}catch(x){}pkNoise(.25,800,3000,.2)});
+  pack.addEventListener('pointermove',e=>{if(!drag||torn)return;moved=Math.max(moved,Math.abs(e.clientX-sx));const o=prog;set(Math.abs(e.clientX-sx)/(pack.offsetWidth*.85));if(prog>o+.05)pkNoise(.12,1500,5000,.15)});
+  pack.addEventListener('pointerup',()=>{if(!drag||torn)return;drag=false;if(moved<8)auto();else if(prog>.55)finish();else set(0)});
+  pack.addEventListener('pointercancel',()=>{drag=false;if(!torn)set(0)});
+  function key(e){if(!torn&&(e.key==='Enter'||e.key===' ')){e.preventDefault();auto()}}document.addEventListener('keydown',key);
+  root.querySelector('.rip-skip').onclick=summary}
 
 function buyPack(){screenPacks()}
 
@@ -1419,7 +1620,7 @@ function playSurvivalMatch(){if(!UT)return;let lives=parseInt(localStorage.getIt
 
 // Mercado
 let UT_MARKET=[];let GLOBAL_MARKET=[];let marketFilter={zone:'ALL',type:'ALL',minRating:0};let marketTab='local';
-function generateMarket(){UT_MARKET=[];for(let i=0;i<15;i++){const r=Math.random();const pool=r<.05?DB_UT.filter(p=>p.type==='icon'):r<.18?DB_UT.filter(p=>p.type==='toty'||p.type==='tots'||p.type==='totw'):DB_UT.filter(p=>p.type==='gold');const c=randItem(pool);if(!c)continue;const base=c.rating*c.rating*(c.type==='icon'?350:c.type==='gold'?80:200);UT_MARKET.push({...c,id:'mk_'+i+'_'+Date.now(),price:Math.round(base*.9),seller:'Bot_'+rand(1,999)})}}
+function generateMarket(){UT_MARKET=[];for(let i=0;i<15;i++){const pool=DB_UT.filter(p=>p.type===(Math.random()<.15?'silver':'gold'));const c=randItem(pool);if(!c)continue;const base=c.rating*c.rating*(c.type==='gold'?80:50);UT_MARKET.push({...c,id:'mk_'+i+'_'+Date.now(),price:Math.round(base*.9),seller:'Bot_'+rand(1,999)})}}
 generateMarket();
 
 function screenUTMarket(){
@@ -1539,7 +1740,7 @@ const FLAGS={
 };
 function flagSVG(n){return `<svg class="flag" viewBox="0 0 30 20" preserveAspectRatio="none" aria-hidden="true">${FLAGS[n]||_R(0,0,30,20,'#556')}</svg>`}
 const _SH={shield:'M4 3h32v21c0 10-8 17-16 21C12 41 4 34 4 24z',round:'M20 5a19 19 0 1 0 .01 0z'};
-const CRESTS={'Real Madrid':['shield','#fff','#4b2e83','band','#d4af37'],'Barcelona':['shield','#004d98','#a50044','vs','#edbb00'],'Man City':['round','#6cabdd','#fff','ring','#1c2c5b'],'Liverpool':['shield','#c8102e','#f6eb61','dot','#f6eb61'],'PSG':['round','#004170','#da291c','band','#fff'],'Bayern Múnich':['round','#0066b2','#fff','ring','#dc052d'],'Arsenal':['shield','#ef0107','#fff','dot','#9c824a'],'AC Milan':['shield','#fb090b','#000','vs','#fff'],'Aston Villa':['shield','#670e36','#95bfe5','split','#f1bf00'],'Atlético Madrid':['shield','#cb3524','#fff','vs','#272e61'],'Benfica':['round','#e83030','#fff','dot','#000'],'Chelsea':['round','#034694','#fff','ring','#dba111'],'Inter Miami':['shield','#f7b5cd','#231f20','band','#fff'],'Napoli':['round','#12a0d7','#fff','dot','#fff'],'Boca':['shield','#103f91','#f4b92c','band','#f4b92c'],'Lyon':['shield','#0b3a8c','#e30613','split','#fff'],'Tottenham':['shield','#fff','#132257','dot','#132257'],'Man United':['round','#da291c','#fbe122','dot','#000'],'Bayer Leverkusen':['round','#e32221','#000','cross','#fff'],'Al-Hilal':['round','#0b3b8c','#fff','ring','#fff'],'Athletic Bilbao':['shield','#ee2523','#fff','vs','#000'],'Inter':['round','#0068a8','#000','vs','#fff'],'Icon':['shield','#e0b93e','#fff3b0','dot','#7a5a00']};
+const CRESTS={'Real Madrid':['shield','#fff','#4b2e83','band','#d4af37'],'Barcelona':['shield','#004d98','#a50044','vs','#edbb00'],'Man City':['round','#6cabdd','#fff','ring','#1c2c5b'],'Liverpool':['shield','#c8102e','#f6eb61','dot','#f6eb61'],'PSG':['round','#004170','#da291c','band','#fff'],'Bayern Múnich':['round','#0066b2','#fff','ring','#dc052d'],'Arsenal':['shield','#ef0107','#fff','dot','#9c824a'],'AC Milan':['shield','#fb090b','#000','vs','#fff'],'Aston Villa':['shield','#670e36','#95bfe5','split','#f1bf00'],'Atlético Madrid':['shield','#cb3524','#fff','vs','#272e61'],'Benfica':['round','#e83030','#fff','dot','#000'],'Chelsea':['round','#034694','#fff','ring','#dba111'],'Inter Miami':['shield','#f7b5cd','#231f20','band','#fff'],'Napoli':['round','#12a0d7','#fff','dot','#fff'],'Boca':['shield','#103f91','#f4b92c','band','#f4b92c'],'Lyon':['shield','#0b3a8c','#e30613','split','#fff'],'Tottenham':['shield','#fff','#132257','dot','#132257'],'Man United':['round','#da291c','#fbe122','dot','#000'],'Bayer Leverkusen':['round','#e32221','#000','cross','#fff'],'Al-Hilal':['round','#0b3b8c','#fff','ring','#fff'],'Athletic Bilbao':['shield','#ee2523','#fff','vs','#000'],'Inter':['round','#0068a8','#000','vs','#fff'],'Trabzonspor':['shield','#7c1d3a','#2a6fb0','vs','#fff'],'Galatasaray':['shield','#e63a1f','#fcb613','split','#fcb613'],'Fenerbahçe':['shield','#10245c','#ffd400','hs','#ffd400'],'Santos':['round','#ffffff','#111111','ring','#111111'],'Rosario Central':['shield','#1f4fa3','#f6c900','band','#f6c900'],'Girona':['shield','#ce1126','#ffffff','vs','#ffffff'],'Getafe':['shield','#0b5aa8','#0b2e5e','hs','#ffffff'],'Burnley':['shield','#6c1d45','#99d6ea','split','#ffffff'],'Icon':['shield','#e0b93e','#fff3b0','dot','#7a5a00']};
 let _CRN=0;
 function crestSVG(club,w){
   let c=CRESTS[club];if(!c){let h=0;for(const ch of String(club||'?'))h=(h*31+ch.charCodeAt(0))%360;c=['shield',`hsl(${h},60%,40%)`,`hsl(${(h+40)%360},70%,80%)`,'band','#fff']}
@@ -1562,7 +1763,7 @@ function utEsc(v){return String(v==null?'':v).replace(/[&<>"]/g,c=>({'&':'&amp;'
 function utCardInner(p){
   const nat=p.nation==='Icon'?'★':(NATION_CODES[p.nation]||String(p.nation||'').slice(0,3).toUpperCase());
   const full=String(p.name||'');const short=full.length>11?full.split(' ').slice(-1)[0]:full;
-  const club=(p.club&&p.club!=='Icon')?p.club:(p.type==='icon'?'Leyenda':'');
+  const club=p.tag||((p.club&&p.club!=='Icon')?p.club:(p.type==='icon'?'Leyenda':''));
   return `<i class="uc-shine"></i><div class="uc-top"><b class="uc-rating">${p.rating}</b><span class="uc-pos"${String(p.pos).length>3?' style="font-size:.74em"':''}>${utEsc(p.pos)}</span><span class="uc-nat">${flagSVG(p.nation)}</span><span class="uc-crest">${crestSVG(p.club)}</span></div><div class="uc-art"></div><div class="uc-name" title="${utEsc(full)}">${utEsc(short)}</div><div class="uc-club">${utEsc(club)}</div>`;
 }
 
@@ -1651,27 +1852,16 @@ function screenProClubs(tab){const P=window.PC=window.PC||pcLoad();if(!P){screen
 const MENU_CONFIG={'ut':{icon:'⚽',color:'#4ade80',name:'Ultimate Team',desc:'Armá tu plantilla, abrí sobres y probá suerte en el draft.'},'quick':{icon:'⚡',color:'#60a5fa',name:'Partido rápido',desc:'Elegí dos equipos reales y jugá un partido al instante.'},'bp':{icon:'🏆',color:'#e0b93e',name:'Pase de batalla',desc:'60 niveles de recompensas, gratis y VIP.'}};
 let currentMenuMode='ut';
 
-function renderMenuContent(mode){
-  currentMenuMode=mode;document.querySelectorAll('.fc-btn').forEach(b=>b.classList.remove('active'));
-  const ab=document.getElementById('nav-'+mode);if(ab)ab.classList.add('active');
-  const cfg=MENU_CONFIG[mode];
-  const u=(typeof UT!=='undefined'&&UT)?UT:null;const bp=(typeof BP!=='undefined'&&BP)?BP:null;
-  const coins=u?Number(u.coins||0).toLocaleString():'0';const packs=u?packCount():0;const lvl=bp?bp.level:1;
-  let art='';
-  if(mode==='ut'){
-    const best=(u&&u.cards?[...u.cards]:[]).sort((a,b)=>b.rating-a.rating).slice(0,3);
+function renderMenuContent(mode){currentMenuMode=mode;document.querySelectorAll('.hb-panel').forEach(p=>p.classList.toggle('focus',p.dataset.m===mode))}
+function hbPanel(mode,focus){
+  const cfg=MENU_CONFIG[mode],u=(typeof UT!=='undefined'&&UT)?UT:null,bp=(typeof BP!=='undefined'&&BP)?BP:null;let art='';
+  if(mode==='ut'){const best=(u&&u.cards?[...u.cards]:[]).sort((a,b)=>b.rating-a.rating).slice(0,3);
     if(best.length){const order=best.length===3?[best[1],best[0],best[2]]:best;art=`<div class="fc-fan n${best.length}">${order.map(p=>`<div class="ut-card ${p.type} ut-hero">${utCardInner(p)}</div>`).join('')}</div>`}
-    else art=`<div class="fc-fan-empty"><div class="ut-card ut-hero ut-ghost"><div class="uc-top"><b class="uc-rating">?</b></div><div class="uc-art"></div><div class="uc-name">Sin cartas</div></div><p>Todavía no tenés cartas.<br>Abrí un sobre para empezar.</p></div>`;
-  }else if(mode==='bp'){
-    const pct=bp?Math.min(100,Math.round(bp.xp/BP_XP_PER_LEVEL*100)):0;
-    art=`<div class="fc-ring" style="--p:${pct}"><div class="fc-ring-in"><b>${lvl}</b><span>de ${BP_MAX_LEVEL}</span></div></div><p class="fc-ring-sub">${bp?bp.xp:0} / ${BP_XP_PER_LEVEL} XP para el próximo nivel</p>`;
-  }else{
-    const teams=[];Object.entries(REAL_TEAMS).forEach(([lg,ts])=>Object.entries(ts).forEach(([n,d])=>teams.push({n,lg,r:d.rating})));
-    art=`<div class="fc-teams">${teams.map(t=>`<div class="fc-team"><b>${t.r}</b><span>${t.n}</span><em>${t.lg}</em></div>`).join('')}</div>`;
-  }
-  const secondary=mode==='ut'?`<button class="fc-ghost-btn" onclick="screenPacks()">🛒 Tienda de sobres</button><button class="fc-ghost-btn" onclick="openPack()">🎁 Mis sobres <span>${packs}</span></button>`:'';
-  document.getElementById('fc-content').innerHTML=`<div class="fc-hero" style="--accent:${cfg.color}"><div class="fc-hero-main"><div class="fc-title">${cfg.name}</div><div class="fc-desc">${cfg.desc}</div><div class="fc-actions"><button class="fc-play-btn" onclick="playMenuMode('${mode}')">Jugar</button>${secondary}</div><div class="fc-stats"><div><b>🪙 ${coins}</b><span>Monedas</span></div><div><b>${packs}</b><span>Sobres</span></div><div><b>${lvl}</b><span>Nivel del pase</span></div></div></div><div class="fc-hero-art">${art}</div></div>`;
-}
+    else art=`<div class="fc-fan-empty"><div class="ut-card ut-hero ut-ghost"><div class="uc-top"><b class="uc-rating">?</b></div><div class="uc-art"></div><div class="uc-name">Sin cartas</div></div><p>Todavía no tenés cartas.<br>Abrí un sobre para empezar.</p></div>`}
+  else if(mode==='bp'){const pct=bp?Math.min(100,Math.round(bp.xp/BP_XP_PER_LEVEL*100)):0;art=`<div class="fc-ring" style="--p:${pct}"><div class="fc-ring-in"><b>${bp?bp.level:1}</b><span>de ${BP_MAX_LEVEL}</span></div></div><p class="fc-ring-sub">${bp?bp.xp:0} / ${BP_XP_PER_LEVEL} XP</p>`}
+  else{const t=[];Object.entries(REAL_TEAMS).forEach(([l,ts])=>Object.entries(ts).forEach(([n,d])=>t.push({n,l,r:d.rating})));art=`<div class="fc-teams">${t.map(x=>`<div class="fc-team"><b>${x.r}</b><span>${x.n}</span><em>${x.l}</em></div>`).join('')}</div>`}
+  const sec=mode==='ut'?`<button class="fc-ghost-btn" onclick="event.stopPropagation();screenPacks()">🛒 Sobres <span>${u?packCount():0}</span></button>`:'';
+  return `<section class="hb-panel ${focus?'focus':''}" data-m="${mode}" tabindex="0" style="--ac:${cfg.color}" onmouseenter="renderMenuContent('${mode}')" onfocusin="renderMenuContent('${mode}')" onclick="renderMenuContent('${mode}')" onkeydown="if(event.key==='Enter')playMenuMode('${mode}')"><div class="hb-wm">${cfg.icon}</div><div class="hb-art">${art}</div><div class="hb-body"><div class="hb-title">${cfg.name}</div><div class="hb-more"><p class="fc-desc">${cfg.desc}</p><div class="fc-actions"><button class="fc-play-btn" onclick="event.stopPropagation();playMenuMode('${mode}')">Jugar</button>${sec}</div></div></div></section>`}
 function playMenuMode(mode){
   const app=document.getElementById('app');app.classList.add('page-transition-out');
   setTimeout(()=>{app.classList.remove('page-transition-out');window.showLoadingScreen(()=>{if(mode==='ut')screenUT();else if(mode==='quick')screenQuickMatch();else if(mode==='bp')screenBP()})},250);
@@ -1689,32 +1879,17 @@ function screenInicio(){
   const isAdmin=window.Firebase.isAdmin();
   const profile=window.onlineProfile;
   const uid=window.onlineUser.uid;
-  const nb=(id,ico,label,click,accent,main)=>`<button class="fc-btn${main?' fc-main':''}" id="nav-${id}" ${main?`onmouseenter="renderMenuContent('${id}')" onfocus="renderMenuContent('${id}')"`:''} onclick="${click}"${accent?` style="--accent:${accent}"`:''}><span class="fc-ico">${ico}</span><span class="fc-lbl">${label}</span></button>`;
-  let extraBtns='';
-  if(localStorage.getItem(`unlocked_volta_${uid}`))extraBtns+=nb('volta','🛹','VOLTA','screenVolta()','#e0b93e');
-  if(localStorage.getItem(`unlocked_arcade_${uid}`))extraBtns+=nb('arcade','👾','ARCADE','screenArcade()','#60a5fa');
-  if(localStorage.getItem(`unlocked_potro_${uid}`))extraBtns+=nb('potro','🐎','POTRO','screenPotro()','#FFD700');
-  if(localStorage.getItem(`unlocked_dios_${uid}`))extraBtns+=nb('dios','🌟','D10S','screenDios()','#ffffff');
-  if(localStorage.getItem(`unlocked_goat_${uid}`))extraBtns+=nb('goat','🐐','GOAT','screenGoat()','#d4af37');
-  const initial=utEsc((profile.gamertag||'?').charAt(0).toUpperCase());
-  const nav=
-    nb('ut','⚽','ULTIMATE TEAM',"playMenuMode('ut')",MENU_CONFIG.ut.color,true)+
-    nb('bp','🏆','PASE DE BATALLA',"playMenuMode('bp')",MENU_CONFIG.bp.color,true)+
-    nb('quick','⚡','PARTIDO RÁPIDO',"playMenuMode('quick')",MENU_CONFIG.quick.color,true)+
-    nb('manager','📋','MODO MANAGER','screenManager()','#34d399')+
-    nb('proclubs','🤝','CLUBS PRO ONLINE','screenProClubs()','#f472b6')+
-    `<div class="fc-nav-sep">Minijuegos</div>`+
-    nb('fk','🎯','TIRO LIBRE','screenFreeKick()','#facc15')+
-    nb('rain','🌧️','LLUVIA','screenRain()','#60a5fa')+
-    nb('survival','☠️','SUPERVIVENCIA','screenSurvival()','#ef4444')+
-    extraBtns+
-    `<div class="fc-nav-sep">Tu cuenta</div>`+
-    nb('wheel','🎡','RULETA DIARIA'+(wheelReady()?' ●':''),'screenWheel()','#facc15')+
-    nb('tactics','⚙️','TÁCTICAS','screenTactics()','#a78bfa')+
-    nb('progreso','🏅','PROGRESO','screenProgress()','#e0b93e')+
-    (isAdmin?nb('admin','🔐','ADMIN PANEL','screenAdmin()','#f87171'):'');
-  $('#app').innerHTML=`<div class="fc-menu-container"><div class="fc-sidebar">${hasBarrio?renderBarrioCard():''}<div class="fc-logo-area" onclick="window.handleLogoClick(event)"><span class="fc-logo-text">MFC<small>2027</small></span>${hasVip?'<span style="font-size:.8rem;color:var(--gold);font-weight:900">🏆</span>':''}${bpVip?'<span style="font-size:.8rem;color:#a78bfa;font-weight:900">👑</span>':''}</div><div class="fc-player"><div class="fc-avatar">${isAdmin?'👑':initial}</div><div class="fc-pinfo"><div class="fc-pname">${utEsc(profile.gamertag)}</div><div class="fc-prole">${isAdmin?'Administrador':'Jugador'}</div></div></div>${hasBarrio?renderTanoTip():''}<div class="fc-nav">${nav}</div><button class="fc-settings-btn" onclick="screenStore()" style="background:linear-gradient(135deg,var(--gold),#b8860b);color:#1a1200;border-color:var(--gold);font-weight:900">🛒 TIENDA</button><button class="fc-settings-btn" onclick="window.Firebase.signOut()">🚪 CERRAR SESIÓN</button></div><div class="fc-content-area" id="fc-content"></div></div>`;
+  const tile=(ico,label,click,ac,badge)=>`<button class="hb-tile" style="--ac:${ac}" onclick="${click}">${badge?'<span class="hb-badge"></span>':''}<span class="ic">${ico}</span>${label}</button>`;
+  const has=k=>localStorage.getItem(`unlocked_${k}_${uid}`);
+  const dock=
+    tile('⭐','EVENTO','screenEvent()','#2dd4bf',typeof evtReady==='function'&&UT&&evtReady()>0)+tile('📖','CRÓNICAS','screenChronicles()','#fb923c')+tile('📚','ÁLBUM','screenAlbum()','#c084fc')+tile('📋','MANAGER','screenManager()','#34d399')+tile('🤝','CLUBS PRO','screenProClubs()','#f472b6')+tile('🎡','RULETA','screenWheel()','#facc15',wheelReady())+
+    tile('🎯','TIRO LIBRE','screenFreeKick()','#facc15')+tile('🌧️','LLUVIA','screenRain()','#60a5fa')+tile('☠️','SUPERVIVENCIA','screenSurvival()','#ef4444')+
+    (has('volta')?tile('🛹','VOLTA','screenVolta()','#e0b93e'):'')+(has('arcade')?tile('👾','ARCADE','screenArcade()','#60a5fa'):'')+(has('potro')?tile('🐎','POTRO','screenPotro()','#FFD700'):'')+(has('dios')?tile('🌟','D10S','screenDios()','#ffffff'):'')+(has('goat')?tile('🐐','GOAT','screenGoat()','#d4af37'):'')+
+    tile('⚙️','TÁCTICAS','screenTactics()','#a78bfa')+tile('🏅','PROGRESO','screenProgress()','#e0b93e')+(isAdmin?tile('🔐','ADMIN','screenAdmin()','#f87171'):'');
+  const u0=(typeof UT!=='undefined'&&UT)?UT:null,b0=(typeof BP!=='undefined'&&BP)?BP:null;
+  $('#app').innerHTML=`<div class="hb page-transition"><header class="hb-top"><span class="fc-logo-text" onclick="window.handleLogoClick(event)">MFC<small>2027</small></span>${hasVip?'<span title="VIP">🏆</span>':''}${bpVip?'<span title="Pase VIP">👑</span>':''}<span class="hb-sp"></span><div class="hb-chip">🪙 ${u0?Number(u0.coins||0).toLocaleString():0}</div><div class="hb-chip">🎁 ${u0?packCount():0}<small>sobres</small></div><div class="hb-chip">${b0?b0.level:1}<small>nivel</small></div><div class="hb-me"><div class="fc-avatar">${isAdmin?'👑':utEsc((profile.gamertag||'?').charAt(0).toUpperCase())}</div><b>${utEsc(profile.gamertag)}</b></div><button class="hb-ib gold" onclick="screenStore()">🛒 TIENDA</button><button class="hb-ib" onclick="window.Firebase.signOut()" aria-label="Cerrar sesión">🚪</button></header>${evtBanner()}${hasBarrio?`<div class="hb-strip">${renderBarrioCard()}${renderTanoTip()}</div>`:''}<main class="hb-stage">${hbPanel('ut',true)}${hbPanel('bp',false)}${hbPanel('quick',false)}</main><nav class="hb-dock">${dock}</nav><div class="hb-ver">MFC 2027 · versión 1.0</div></div>`;
   renderMenuContent('ut');
+  setTimeout(evtAnnounce,1800);
   if(!hasBarrio)window.askBarrioName();
 }
 
